@@ -1,0 +1,125 @@
+/* 1 */
+{
+    "_id" : ObjectId("5d468912a4772c4ce00b4eb1"),
+    "Category" : "Science",
+    "Question" : "What is H2O?",
+    "Choices" : [ 
+        "Isopropyl Alcohol", 
+        "Acid", 
+        "Water", 
+        "Hydrogen Peroxide"
+    ],
+    "CorrectAns" : 2
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("5d46898ba4772c4ce00b4ec3"),
+    "Category" : "Science",
+    "Question" : "What is the boiling point of water?",
+    "Choices" : [ 
+        "0 celsius", 
+        "27 celsius", 
+        "100 celsius", 
+        "273 celsius"
+    ],
+    "CorrectAns" : 2
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("5d468a21a4772c4ce00b4ed3"),
+    "Category" : "Science",
+    "Question" : "Who invented the telescope?",
+    "Choices" : [ 
+        "Galileo Galilei", 
+        "Albert Einstien", 
+        "Elon Musk", 
+        "Nikola Tesla"
+    ],
+    "CorrectAns" : 0
+}
+
+/* 4 */
+{
+    "_id" : ObjectId("5d468a67a4772c4ce00b4edd"),
+    "Category" : "Math",
+    "Question" : "9x10/2 = ?",
+    "Choices" : [ 
+        "45", 
+        "90", 
+        "40", 
+        "180"
+    ],
+    "CorrectAns" : 0
+}
+
+/* 5 */
+{
+    "_id" : ObjectId("5d468afca4772c4ce00b4eeb"),
+    "Category" : "Math",
+    "Question" : "50-42/2 = ?",
+    "Choices" : [ 
+        "28", 
+        "4", 
+        "29", 
+        "8"
+    ],
+    "CorrectAns" : 2
+}
+
+/* 6 */
+{
+    "_id" : ObjectId("5d468b4da4772c4ce00b4ef8"),
+    "Category" : "Math",
+    "Question" : "30x0+100/2 = ?",
+    "Choices" : [ 
+        "0", 
+        "50", 
+        "100", 
+        "1500"
+    ],
+    "CorrectAns" : 1
+}
+
+/* 7 */
+{
+    "_id" : ObjectId("5d468c43a4772c4ce00b4f0e"),
+    "Category" : "English",
+    "Question" : "Select means:",
+    "Choices" : [ 
+        "Choose", 
+        "Compare", 
+        "Create", 
+        "Ignore"
+    ],
+    "CorrectAns" : 0
+}
+
+/* 8 */
+{
+    "_id" : ObjectId("5d468cb2a4772c4ce00b4f1a"),
+    "Category" : "English",
+    "Question" : "Atmosphere means:",
+    "Choices" : [ 
+        "Underground", 
+        "Round globe", 
+        "Falling", 
+        "Surrounding Air"
+    ],
+    "CorrectAns" : 3
+}
+
+/* 9 */
+{
+    "_id" : ObjectId("5d468d8ea4772c4ce00b4f30"),
+    "Category" : "English",
+    "Question" : "Assistant means:",
+    "Choices" : [ 
+        "Backtrack", 
+        "Counter", 
+        "Scoundrel", 
+        "Helper"
+    ],
+    "CorrectAns" : 3
+}
