@@ -21,7 +21,7 @@ const urlencoder = bodyparser.urlencoded({
 app.use(express.static(__dirname + "/public"))
 app.use(session({
     secret : "secret name",
-    name : "chocolate cookie",
+    name : "session",
     resave : true,
     saveUninitialized : true,
     cookie : {
@@ -59,7 +59,7 @@ app.get("/", (req,res)=>{
         })
     }
     else{
-        res.sendFile(__dirname + "/public/login.html")
+        res.sendFile(__dirname + "/public/index.html")
     }
     
 })
