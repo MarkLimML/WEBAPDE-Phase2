@@ -54,21 +54,25 @@ app.get("/", (req,res)=>{
     }
     
     if(req.session.username){
+        console.log(req.session.username)
         res.render("index.hbs",{
-            username: req.session.username,
-            fontsize: fs
+            username: req.session.username
         })
     }
     else{
         console.log(User)
-        res.sendFile(__dirname + "/public/index.html")
+        res.sendFile(__dirname + "/views/index.html")
     }
     
 })
 
+app.get("/login.html", (req,res)=>{
+    res.sendFile(__dirname + "/views/login.html")
+})
+
 app.post("/login", urlencoder,(req,res)=>{
-    let username = req.body.un
-    let password = req.body.pw
+    let username = req.body.login_username
+    let password = req.body.login_password
     
     User.findOne({
         username: username,
