@@ -164,7 +164,13 @@
         <div id =“game_container” style="flex-direction: row" >
 		
             <h2 id='questionTitle'>{{question}} </h2>
-            <ul id ='selectionList'>{{answers}} </ul>
+            <ul id ='selectionList'>
+                {{#each question}}
+                <li><input type="radio" name='{{_id}}' value=i/> {{answers}}</li>
+                i++
+                {{/each}}
+            </ul>
+
             <p> Click the next button to go to the next question! </p>
             
 

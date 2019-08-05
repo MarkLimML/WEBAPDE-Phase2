@@ -57,6 +57,7 @@ app.get("/", (req,res)=>{
     }
     else{
         console.log(User)
+        console.log(Question)
         //res.render("index.hbs",{
         //    username: "Guest"
         //})
