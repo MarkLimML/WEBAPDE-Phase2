@@ -6,6 +6,7 @@ const cookieparser = require("cookie-parser")
 const mongoose = require("mongoose")
 
 const {User} = require("./user.js")
+const {Question} = require("./question.js")
 
 const app = express()
 
@@ -53,12 +54,13 @@ app.get("/", (req,res)=>{
     }
     
     if(req.session.username){
-        res.render("home.hbs",{
+        res.render("index.hbs",{
             username: req.session.username,
             fontsize: fs
         })
     }
     else{
+        console.log(User)
         res.sendFile(__dirname + "/public/index.html")
     }
     
@@ -161,7 +163,7 @@ app.post("/add", urlencoder, (req,res)=>{
 
 app.post("/delete", urlencoder, (req,res)=>{
     console.log("POST /delete")
-    User.deleteOne({
+    Question.deleteOne({
         _id: req.body.id
     }, (err,doc)=>{
         if(err){
