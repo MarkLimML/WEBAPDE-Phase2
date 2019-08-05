@@ -8,5 +8,5 @@ let Question = mongoose.model("question", {
 })
 
 module.exports = {
-    User
+    Question
 }
