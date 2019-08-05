@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 let Question = mongoose.model("question", {
     category: String,
     question: String,
-    choices: Array,
+    choices: [String],
     correctans: Number
 })
 

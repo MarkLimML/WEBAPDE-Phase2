@@ -1,125 +1,279 @@
 /* 1 */
 {
     "_id" : ObjectId("5d468912a4772c4ce00b4eb1"),
-    "Category" : "Science",
-    "Question" : "What is H2O?",
-    "Choices" : [ 
+    "category" : "Science",
+    "question" : "What is H2O?",
+    "choices" : [ 
         "Isopropyl Alcohol", 
         "Acid", 
         "Water", 
         "Hydrogen Peroxide"
     ],
-    "CorrectAns" : 2
+    "correctans" : 2
 }
 
 /* 2 */
 {
     "_id" : ObjectId("5d46898ba4772c4ce00b4ec3"),
-    "Category" : "Science",
-    "Question" : "What is the boiling point of water?",
-    "Choices" : [ 
+    "category" : "Science",
+    "question" : "What is the boiling point of water?",
+    "choices" : [ 
         "0 celsius", 
         "27 celsius", 
         "100 celsius", 
         "273 celsius"
     ],
-    "CorrectAns" : 2
+    "correctans" : 2
 }
 
 /* 3 */
 {
     "_id" : ObjectId("5d468a21a4772c4ce00b4ed3"),
-    "Category" : "Science",
-    "Question" : "Who invented the telescope?",
-    "Choices" : [ 
+    "category" : "Science",
+    "question" : "Who invented the telescope?",
+    "choices" : [ 
         "Galileo Galilei", 
         "Albert Einstien", 
         "Elon Musk", 
         "Nikola Tesla"
     ],
-    "CorrectAns" : 0
+    "correctans" : 0
 }
 
 /* 4 */
 {
     "_id" : ObjectId("5d468a67a4772c4ce00b4edd"),
-    "Category" : "Math",
-    "Question" : "9x10/2 = ?",
-    "Choices" : [ 
+    "category" : "Math",
+    "question" : "9x10/2 = ?",
+    "choices" : [ 
         "45", 
         "90", 
         "40", 
         "180"
     ],
-    "CorrectAns" : 0
+    "correctans" : 0
 }
 
 /* 5 */
 {
     "_id" : ObjectId("5d468afca4772c4ce00b4eeb"),
-    "Category" : "Math",
-    "Question" : "50-42/2 = ?",
-    "Choices" : [ 
+    "category" : "Math",
+    "question" : "50-42/2 = ?",
+    "choices" : [ 
         "28", 
         "4", 
         "29", 
         "8"
     ],
-    "CorrectAns" : 2
+    "correctans" : 2
 }
 
 /* 6 */
 {
     "_id" : ObjectId("5d468b4da4772c4ce00b4ef8"),
-    "Category" : "Math",
-    "Question" : "30x0+100/2 = ?",
-    "Choices" : [ 
+    "category" : "Math",
+    "question" : "30x0+100/2 = ?",
+    "choices" : [ 
         "0", 
         "50", 
         "100", 
         "1500"
     ],
-    "CorrectAns" : 1
+    "correctans" : 1
 }
 
 /* 7 */
 {
     "_id" : ObjectId("5d468c43a4772c4ce00b4f0e"),
-    "Category" : "English",
-    "Question" : "Select means:",
-    "Choices" : [ 
+    "category" : "English",
+    "question" : "Select means:",
+    "choices" : [ 
         "Choose", 
         "Compare", 
         "Create", 
         "Ignore"
     ],
-    "CorrectAns" : 0
+    "correctans" : 0
 }
 
 /* 8 */
 {
     "_id" : ObjectId("5d468cb2a4772c4ce00b4f1a"),
-    "Category" : "English",
-    "Question" : "Atmosphere means:",
-    "Choices" : [ 
+    "category" : "English",
+    "question" : "Atmosphere means:",
+    "choices" : [ 
         "Underground", 
         "Round globe", 
         "Falling", 
         "Surrounding Air"
     ],
-    "CorrectAns" : 3
+    "correctans" : 3
 }
 
 /* 9 */
 {
     "_id" : ObjectId("5d468d8ea4772c4ce00b4f30"),
-    "Category" : "English",
-    "Question" : "Assistant means:",
-    "Choices" : [ 
+    "category" : "English",
+    "question" : "Assistant means:",
+    "choices" : [ 
         "Backtrack", 
         "Counter", 
         "Scoundrel", 
         "Helper"
     ],
-    "CorrectAns" : 3
+    "correctans" : 3
+}
+
+/* 10 */
+{
+    "_id" : ObjectId("5d47d18d323d3fac39884615"),
+    "category" : "Science",
+    "question" : "What Is Toxicology The Study Of?",
+    "choices" : [ 
+        "Life", 
+        "Medicine", 
+        "Weather", 
+        "Poisons"
+    ],
+    "correctans" : 3
+}
+
+/* 11 */
+{
+    "_id" : ObjectId("5d47d1f52c74c34a48ee6ce6"),
+    "category" : "Science",
+    "question" : "What is the chemical symbol for copper?",
+    "choices" : [ 
+        "Cu", 
+        "Ag", 
+        "Fe", 
+        "Mg"
+    ],
+    "correctans" : 0
+}
+
+/* 12 */
+{
+    "_id" : ObjectId("5d47d2782c74c34a48ee6ce7"),
+    "category" : "Science",
+    "question" : "If you're in the northern hemisphere, Polaris, the North Star, can be found by looking which direction?",
+    "choices" : [ 
+        "South", 
+        "North", 
+        "West", 
+        "East"
+    ],
+    "correctans" : 1
+}
+
+/* 13 */
+{
+    "_id" : ObjectId("5d47d3012c74c34a48ee6ce8"),
+    "category" : "Science",
+    "question" : "This ancient attempt to transmute base metals into gold was called ________.",
+    "choices" : [ 
+        "Transfusion", 
+        "Surgery", 
+        "Alchemy", 
+        "Cooking"
+    ],
+    "correctans" : 2
+}
+
+/* 14 */
+{
+    "_id" : ObjectId("5d47d3572c74c34a48ee6ce9"),
+    "category" : "Math",
+    "question" : "What Is An Angle Of Less Than 90 Degrees Known As?",
+    "choices" : [ 
+        "Acute Angle", 
+        "Obtuse Angle", 
+        "Straight Angle", 
+        "Right Angle"
+    ],
+    "correctans" : 0
+}
+
+/* 15 */
+{
+    "_id" : ObjectId("5d47d42c2c74c34a48ee6cea"),
+    "category" : "Math",
+    "question" : "What geometric shape has 4 equal sides?",
+    "choices" : [ 
+        "Pentagon", 
+        "Circle", 
+        "Triangle", 
+        "Square"
+    ],
+    "correctans" : 3
+}
+
+/* 16 */
+{
+    "_id" : ObjectId("5d47d4aa2c74c34a48ee6ceb"),
+    "category" : "Math",
+    "question" : "What is the only digit that has the same number of letters as its value?",
+    "choices" : [ 
+        "Hundred", 
+        "Two", 
+        "Four", 
+        "Ten"
+    ],
+    "correctans" : 2
+}
+
+/* 17 */
+{
+    "_id" : ObjectId("5d47d52f2c74c34a48ee6cec"),
+    "category" : "Math",
+    "question" : "The square root of 1 is?",
+    "choices" : [ 
+        "1", 
+        "0.2", 
+        "0", 
+        "0.5"
+    ],
+    "correctans" : 0
+}
+
+/* 18 */
+{
+    "_id" : ObjectId("5d47d64b2c74c34a48ee6ced"),
+    "category" : "English",
+    "question" : "What three letter word means the same as \"to ingest\"?",
+    "choices" : [ 
+        "eat", 
+        "bat", 
+        "cat", 
+        "pot"
+    ],
+    "correctans" : 0
+}
+
+/* 19 */
+{
+    "_id" : ObjectId("5d47d71c2c74c34a48ee6cee"),
+    "category" : "English",
+    "question" : "What does S.O.S. stand for?",
+    "choices" : [ 
+        "Spend Our Savings", 
+        "Skin Our Scalps", 
+        "Save Our Souls", 
+        "Spin Our Salads"
+    ],
+    "correctans" : 2
+}
+
+/* 20 */
+{
+    "_id" : ObjectId("5d47d8452c74c34a48ee6cef"),
+    "category" : "English",
+    "question" : "What does the abbreviation N/A mean?",
+    "choices" : [ 
+        "Now Active", 
+        "Not Accessible", 
+        "Now Available", 
+        "Not Applicable"
+    ],
+    "correctans" : 3
 }

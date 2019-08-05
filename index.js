@@ -48,10 +48,6 @@ app.get("/", (req,res)=>{
     else{
         res.sendFile(__dirname + "/public/login.html")
     }*/
-    let fs = 12
-    if(req.cookies["font size"]) {
-        fs = req.cookies["font size"]
-    }
     
     if(req.session.username){
         console.log(req.session.username)
@@ -61,6 +57,9 @@ app.get("/", (req,res)=>{
     }
     else{
         console.log(User)
+        //res.render("index.hbs",{
+        //    username: "Guest"
+        //})
         res.sendFile(__dirname + "/views/index.html")
     }
     
@@ -68,6 +67,23 @@ app.get("/", (req,res)=>{
 
 app.get("/login.html", (req,res)=>{
     res.sendFile(__dirname + "/views/login.html")
+})
+
+app.get("/signup.html", (req,res)=>{
+    res.sendFile(__dirname + "/views/signup.html")
+})
+
+app.get("/editprofile.html", (req,res)=>{
+    if(req.session.username){
+        res.render("editprofile.hbs",{
+            username: req.session.username,
+            password: req.session.password,
+            totalgrains: req.session.totalgrains
+        })
+    }
+    else{
+        res.sendFile(__dirname + "/views/signup.html")
+    }
 })
 
 app.post("/login", urlencoder,(req,res)=>{
@@ -85,20 +101,24 @@ app.post("/login", urlencoder,(req,res)=>{
         }else{
             console.log(doc)
             req.session.username = doc.username
+            req.session.password = doc.password
+            req.session.totalgrains = doc.totalgrains
             res.redirect("/")
         }
     })
 })
 
 app.post("/register", urlencoder,(req,res)=>{
-    let username = req.body.un
-    let password = req.body.pw
+    let username = req.body.reg_username
+    let password = req.body.reg_password
     
     let user = new User({
         /*username: username,
         password: password*/
-        username,
-        password
+        type: "user",
+        username: username,
+        password: password,
+        totalgrains: 0
     })
     
     user.save().then((doc)=>{
