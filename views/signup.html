@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <link href="./fontawesome/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <style>
+        .all{
+ 
+          width:500px;
+          height:100%;
+          margin:0 auto;
+
+          padding:30px;
+          box-sizing: border-box;
+
+          color:rgba(0,0,0,0.8);
+          font-family:helvectiva;
+          font-size: 1.2rem;
+        }
+
+    </style>
+    
+
+    <header>
+
+    </header>
+    <body>
+        <br><br>
+        <header class="header">
+         <header class="header">
+            <nav class="navbar fixed-top navbar-expand-lg text-nowrap navbar-light bg-light">
+                <div class="container">
+                    <a class="p-0 navbar-brand">
+                        <img class="mx-2" height="38px" src="krustykrab.png" alt="">
+                        <small class="d-lg-none d-xl-inline">Krusty Krab</small>
+                    </a>
+                    <button class="navbar-toggler ml-auto" type="button" data-toggle="modal" data-target="#homepage_settings_modal">
+                        <span class="navbar-icon"><span class="fas fa-cog fa-fw " aria-hidden="true"></span></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item dropdown mx-1">
+                                    <a href="login.html" class="nav-link"  title="You need to log in." onclick="error()"><span class="fas fa-book fa-fw " aria-hidden="true" ></span> Burger Sales</a>
+                                    </li>   
+                                
+                                    <li class="nav-item mx-1" id="login">
+                                    <a class="nav-link" href="login.html" title="You need to log in." onclick="error()"><span class="fas fa-book fa-fw " aria-hidden="true"></span> Species Sales</a>
+                                    </li>
+                                
+                                    <li class="nav-item mx-1 dropdown">
+                                     <a href="login.html" class="nav-link" title="You need to log in." onclick="error()"><span class="fas fa-book fa-fw " aria-hidden="true"></span> Burger By Species</a>
+                                    </li>
+                                    <li class="nav-item mx-1 dropdown">
+                                    <a href="login.html" class="nav-link" title="You need to log in." onclick="error()"><span class="fas fa-info-circle fa-fw " aria-hidden="true"></span> Sales </a>
+                                    <div class="dropdown-menu">
+                                    
+                                    </div>
+                                    </li>
+                                    </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item mx-1 dropdown">
+                                <a href="#" class="nav-link">
+                                    <span class="fas fa-user-times fa-fw " aria-hidden="true"></span> <span class="d-lg-none d-xl-inline" style="color: #000">Guest</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class = all>
+        <div class="mx-auto form-narrow" id="signup_container">
+            <form method="post" action="register" id="signup_form">
+            <h1 class="text-center">Sign up</h1>
+            <hr>
+            <div class="form-group">
+                <label for="reg_username" class="sr-only">Username</label>
+                <input data-toggle="popover" data-content="Alphanumeric characters only." type="text" name="reg_username" id="reg_username" class="form-control" placeholder="Username" required="" data-original-title="" title="">
+            </div>
+            <div class="form-group">
+                <label for="reg_pass1" class="sr-only">Password</label>
+                <input data-toggle="popover" data-content="Minimum length: 8 characters." type="password" name="reg_pass1" id="reg_pass1" class="form-control" placeholder="Password" required="" data-original-title="" title="">
+            </div>
+            <button class="btn btn-lg btn-success btn-block" type="submit" id="signup_button"><span class="fas fa-pencil-alt fa-fw " aria-hidden="true"></span>Sign up
+            </form>
+            </div>
+        </div>
+        </header>
+    </body>
+</html>
