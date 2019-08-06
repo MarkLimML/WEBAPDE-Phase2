@@ -61,7 +61,7 @@ app.get("/", (req,res)=>{
         //res.render("index.hbs",{
         //    username: "Guest"
         //})
-        res.sendFile(__dirname + "/views/index.html")
+        res.sendFile(__dirname + "/index.html")
     }
     
 })
@@ -85,6 +85,32 @@ app.get("/math", (req,res)=>{
     }
     else{
         res.sendFile(__dirname + "/views/math.html")
+    }
+})
+
+app.get("/english", (req,res)=>{
+    if(req.session.username){
+        res.render("index.hbs",{
+            username: req.session.username,
+            password: req.session.password,
+            totalgrains: req.session.totalgrains
+        })
+    }
+    else{
+        res.redirect("/")
+    }
+})
+
+app.get("/science", (req,res)=>{
+    if(req.session.username){
+        res.render("science.hbs",{
+            username: req.session.username,
+            password: req.session.password,
+            totalgrains: req.session.totalgrains
+        })
+    }
+    else{
+        res.sendFile(__dirname + "/views/science.html")
     }
 })
 
