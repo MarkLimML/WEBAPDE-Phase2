@@ -5,10 +5,15 @@ const session = require("express-session")
 const cookieparser = require("cookie-parser")
 const mongoose = require("mongoose")
 
-const {User} = require("./user.js")
-const {Question} = require("./question.js")
+const {User} = require("./models/user.js")
+const {Question} = require("./models/question.js")
 
 const app = express()
+
+var publicDir = require('path').join(__dirname,'/public')
+var modelsDir = require('path').join(__dirname,'/models')
+app.use(express.static(publicDir))
+app.use(express.static(modelsDir))
 
 mongoose.Promise = global.Promise
 mongoose.connect("mongodb://localhost:27017/userss19", {
@@ -31,7 +36,7 @@ app.use(session({
 }))
 app.use(cookieparser())
 
-app.get("/", (req,res)=>{
+app.get(["/","/index.html"], (req,res)=>{
     /*if(req.session.view) {
         req.session.view++
     }
@@ -61,7 +66,7 @@ app.get("/", (req,res)=>{
         //res.render("index.hbs",{
         //    username: "Guest"
         //})
-        res.sendFile(__dirname + "/views/index.html")
+        res.sendFile(__dirname + "/index.html")
     }
     
 })
@@ -74,16 +79,77 @@ app.get("/signup.html", (req,res)=>{
     res.sendFile(__dirname + "/views/signup.html")
 })
 
-app.get("/editprofile.html", (req,res)=>{
+
+app.get("/math", (req,res)=>{
     if(req.session.username){
-        res.render("editprofile.hbs",{
+        res.render("math.hbs",{
             username: req.session.username,
             password: req.session.password,
             totalgrains: req.session.totalgrains
         })
     }
     else{
-        res.sendFile(__dirname + "/views/signup.html")
+        res.sendFile(__dirname + "/views/math.html")
+    }
+})
+
+app.get("/english", (req,res)=>{
+    if(req.session.username){
+        res.render("index.hbs",{
+            username: req.session.username,
+            password: req.session.password,
+            totalgrains: req.session.totalgrains
+        })
+    }
+    else{
+        res.redirect("/")
+    }
+})
+
+app.get("/science", (req,res)=>{
+    if(req.session.username){
+        res.render("science.hbs",{
+            username: req.session.username,
+            password: req.session.password,
+            totalgrains: req.session.totalgrains
+        })
+    }
+    else{
+        res.sendFile(__dirname + "/views/science.html")
+    }
+})
+
+
+app.get("/editprofile.html", (req,res)=>{
+    if(req.session.username){
+        User.findOne({
+            username: req.session.username
+        }, (err,docs)=>{
+            if(err){
+                res.send(err)
+            }else{
+                res.render("editprofile.hbs",{
+                    username: req.session.username,
+                    password: req.session.password,
+                    totalgrains: req.session.totalgrains
+                })
+            }
+        })
+        
+    }
+    else{
+        res.redirect("/")
+    }
+})
+
+app.get("/uploadquestion.html",(req,res)=>{
+    if(req.session.username){
+        res.render("uploadquestion.hbs",{
+            username: req.session.username
+        })
+    }
+    else{
+        res.redirect("/")
     }
 })
 
@@ -101,12 +167,19 @@ app.post("/login", urlencoder,(req,res)=>{
             res.send("User does not exist")
         }else{
             console.log(doc)
+            req.session._id = doc._id
             req.session.username = doc.username
             req.session.password = doc.password
             req.session.totalgrains = doc.totalgrains
             res.redirect("/")
         }
     })
+})
+
+app.get("/logout", urlencoder,(req,res)=>{
+    req.session.username = ""
+    req.session.password = ""
+    res.redirect("/")
 })
 
 app.post("/register", urlencoder,(req,res)=>{
@@ -130,6 +203,23 @@ app.post("/register", urlencoder,(req,res)=>{
     }, ()=>{
         // if operation fails
         res.send(err)
+    })
+})
+
+app.post("/changepass", (req,res)=>{
+    
+    console.log("POST /changepass")
+    User.update({
+        _id: req.session._id
+    }, {
+        username: req.body.un,
+        password: req.body.changepass
+    }, (err,doc)=>{
+        if(err){
+            res.send(err)
+        }else{
+            res.redirect("/")
+        }
     })
 })
 
@@ -181,6 +271,30 @@ app.post("/add", urlencoder, (req,res)=>{
     user.save().then((doc)=>{
         console.log("Added user")
         res.redirect("/users")
+    }, (err)=>{
+        res.send(err)
+    })
+})
+
+app.post("/addquestion", urlencoder, (req,res)=>{
+    console.log("POST /addquestion")
+    let category = req.body.cat
+    let stmt = req.body.stmt
+    let choices = [req.body.c1,req.body.c2,req.body.c3,req.body.c4]
+    let correct = req.body.ans - 1
+    
+    let question = new Question({
+        category: category,
+        question: stmt,
+        choices: choices,
+        correctans: correct
+    })
+    
+    question.save().then((doc)=>{
+        console.log("Added question")
+        res.render("uploadquestion.hbs",{
+            username: req.session.username
+        })
     }, (err)=>{
         res.send(err)
     })
