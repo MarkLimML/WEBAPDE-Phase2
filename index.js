@@ -150,6 +150,12 @@ app.post("/login", urlencoder,(req,res)=>{
     })
 })
 
+app.post("/logout", urlencoder,(req,res)=>{
+    req.session.username = ""
+    req.session.password = ""
+    res.redirect("/")
+})
+
 app.post("/register", urlencoder,(req,res)=>{
     let username = req.body.reg_username
     let password = req.body.reg_password
