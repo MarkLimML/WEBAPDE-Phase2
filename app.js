@@ -207,8 +207,7 @@ app.post("/register", urlencoder,(req,res)=>{
     })
 })
 
-app.post("/changepass", (req,res)=>{
-    
+app.post("/changepass", urlencoder, (req,res)=>{
     console.log("POST /changepass")
     User.update({
         _id: req.session._id
@@ -219,11 +218,14 @@ app.post("/changepass", (req,res)=>{
         if(err){
             res.send(err)
         }else{
+            req.session.username = req.body.un
+            req.session.password = req.body.changepass
             res.redirect("/")
         }
     })
 })
 
+/*
 app.get("/users", (req,res)=>{
     //load all users
     //localhost:3000/users
@@ -259,7 +261,7 @@ app.get("/addpage", (req,res)=>{
     console.log("GET /addpage")
     res.render("add.hbs")
 })
-
+*/
 app.post("/add", urlencoder, (req,res)=>{
     console.log("POST /add")
     let username = req.body.un
