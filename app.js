@@ -67,7 +67,7 @@ app.get(["/","/index.html"], (req,res)=>{
         //res.render("index.hbs",{
         //    username: "Guest"
         //})
-        res.sendFile(__dirname + "/index.html")
+        res.sendFile(__dirname + "/views/index.html")
     }
     
 })
