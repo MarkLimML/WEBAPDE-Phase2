@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link href="css/all.css" rel="stylesheet" type="text/css">
+        <link href="./fontawesome/css/all.css" rel="stylesheet">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -13,16 +13,16 @@
             .home{
                 height: 50;
                 width: 100%;
-                background-image: url("images/roce.jpg")
+                background-image: url("public/images/roce.jpg")
             }    
             
             .navbar{
                 background-color:#76b6c4;
                 border-color: #7fcdff;
             }
-            .card .card-header{
+            .card-header{
                 background-color: #1da2d8;
-                font-size: 30px
+                
             }
             .card .card-body{
                 background-color: #7fcdff;
@@ -49,12 +49,7 @@
                 position: relative;
                 
             }
-#scoreTitle{
-              font-family: "Times New Roman", Times, serif;
-              font-size: 20px;
-              color: white;
-              font-weight: bold
-          }
+
         </style>
     
     <body class="home page-template page-template-homepage page-template-homepage-php page page-id-8 page-homepage">
@@ -63,7 +58,7 @@
             <nav class="navbar fixed-top navbar-expand-lg text-nowrap navbar-light" style="background-color: #7fcdff;">
                 <div class="container">
                   <a class="p-0 navbar-brand" href="index.html">
-                        <img class="mx-2" height="38px" src="images/freerice.png" alt="" href=index.html>
+                        <img class="mx-2" height="38px" src="krustykrab.png" alt="" href=index.html>
                         <strong class="d-lg-none d-xl-inline">FreeRice  </strong>
                     </a>
                     <button class="navbar-toggler ml-auto" type="button" data-toggle="modal" data-target="#homepage_settings_modal">
@@ -175,9 +170,9 @@
 	    </div>	
         <br><br>
         <div id="image_container" style="flex-direction: row">
-            <img id="bowlImage" height="250px" src="images/rice/emptybowl.png">
+            <img id="bowlImage" height="250px" src="public/images/rice/emptybowl.png">
             <img id="riceImage" height="250px" >
-            <div id="scoreTitle"> Your donation total is 0 grains of rice</div>
+            <div id="scoreTitle"> SCORE: </div>
         </div>
 </div>
 </div>   
@@ -364,7 +359,7 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
         
         if(selectedButton == correctChoice){
             Totalscore+=10;
-            document.getElementById("scoreTitle").innerHTML = "Your donation total is "+Totalscore+" grains of rice";
+            document.getElementById("scoreTitle").innerHTML = "Score:"+Totalscore;
             if(Totalscore<100)
             changeRice(Totalscore)
             
@@ -383,7 +378,7 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
     }
     
     function changeRice(score){
-        document.getElementById("riceImage").src = "images/rice/rice"+score+".gif"
+        document.getElementById("riceImage").src = "public/images/rice/rice"+score+".gif"
     }
     
     

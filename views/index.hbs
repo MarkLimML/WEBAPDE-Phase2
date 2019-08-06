@@ -13,7 +13,7 @@
             .home{
                 height: 50;
                 width: 100%;
-                background-image: url("images/roce.jpg")
+                background-image: url("public/images/roce.jpg")
             }    
             
             .navbar{
@@ -180,7 +180,7 @@
 	    </div>	
         <br><br>
         <div id="image_container" style="flex-direction: row">
-            <img id="bowlImage" height="250px" src="images/rice/emptybowl.png">
+            <img id="bowlImage" height="250px" src="public/images/rice/emptybowl.png">
             <img id="riceImage" height="250px" >
             <div id="scoreTitle"> Your donation total is 0 grains of rice</div>
         </div>
@@ -388,7 +388,7 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
     }
     
     function changeRice(score){
-        document.getElementById("riceImage").src = "images/rice/rice"+score+".gif"
+        document.getElementById("riceImage").src = "public/images/rice/rice"+score+".gif"
     }
     
     
