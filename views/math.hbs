@@ -13,7 +13,7 @@
             .home{
                 height: 50;
                 width: 100%;
-                background-image: url("image/roce.jpg")
+                background-image: url("../public/images/roce.jpg")
             }    
             
             .navbar{
@@ -49,22 +49,7 @@
                 position: relative;
                 
             }
-            .uploadbtn{
-              background-color: #4CAF50;
-              color: white;
-              padding: 16px 20px;
-              margin: 8px 0;
-              border: none;
-              cursor: pointer;
-              opacity: 0.9;
-            }
-          
-          .container{
-              color: white
-          }
-          hr.border{
-              color: white
-          }
+
         </style>
     
     <body class="home page-template page-template-homepage page-template-homepage-php page page-id-8 page-homepage">
@@ -103,7 +88,7 @@
                                      <a href="login.html" class="nav-link"><span class="fas fa-book fa-fw " aria-hidden="true"></span>Science</a>
                                     </li>
                                     <li class="nav-item mx-1 dropdown">
-                                    <a href="login.html" class="nav-link"><span class="fas fa-info-circle fa-fw " aria-hidden="true"></span> Sales </a>
+<!--                                    <a href="login.html" class="nav-link"><span class="fas fa-info-circle fa-fw " aria-hidden="true"></span> Sales </a>-->
                                     <div class="dropdown-menu">
                                     
                                     </div>
@@ -133,7 +118,8 @@
                                     <span class="fas fa-user-times fa-fw " aria-hidden="true"></span> <span class="d-lg-none d-xl-inline" style="color: #000">{{Guest}}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="signup.html"><span class="fas fa-pencil-alt fa-fw " aria-hidden="true" title="Sign up"></span> Log Out </a>
+                                    <a class="dropdown-item" href="editprofile.html"><span class="fas fa-sign-in-alt fa-fw " aria-hidden="true" title="Log in"></span> Profile</a>
+                                    <a class="dropdown-item" href="signup.html"><span class="fas fa-pencil-alt fa-fw " aria-hidden="true" title="Sign up"></span> Logout</a>
                                 </div>
                             </li>
                         </ul>
@@ -153,43 +139,190 @@
      
     
 
-<form>
-          <div class="container">
-            <h1>Create a Question</h1>
-            <p>Please fill in this form to create a question</p>
-            <hr class="border">
 
-            <label><b>Question: </b></label>
-            <input type="text" placeholder="Input the Question" name="question" required>
-            <br><br>
-            <label for="psw"><b>CATEGORY</b></label> <br>
-            <input type="radio" name="category" value="Science"> SCIENCE<br>
-            <input type="radio" name="category" value="English"> ENGLISH<br>
-            <input type="radio" name="category" value="Math"> MATH
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="latest_update"><div class="row m-0">
+
+
+    
+</div>
+</div>
+    
+    
+<div class="container" role="main" id="content">
+    
+<div class="card mb-3">
+<h6 class="card-header text-center">Math</h6>
+<div class="card-body text-center">
+ <div id="score_container">
             
-            <br><br>
+        </div>
+        
+        <div id =“game_container” style="flex-direction: row" >
+		
+            <h2 id='questionTitle'>{{question}} </h2>
+            <ul id ='selectionList'>
+                {{#each question}}
+                <li><input type="radio" name='{{_id}}' value=i/> {{answers}}</li>
+                i++
+                {{/each}}
+            </ul>
 
+            <p> Click the next button to go to the next question! </p>
             
-              
-     
-            <label><b>CHOICES: </b></label>
-            <input type="text" placeholder="Input the choice#1 " required>
-            <input type="text" placeholder="Input the choice#2 " required>
-            <input type="text" placeholder="Input the choice#3 " required>
-            <input type="text" placeholder="Input the choice#4 " required>
-            
-            <br>
-            <label><b>CORRECT ANSWER: </b></label>
-            <input type="number" placeholder="Input the number of the correct answer" min="1" max="4" required>  
-              
-            <hr class="border">
 
-            <p> By clicing the upload button, the question will be uploaded to database</p>
-            <button type="submit" class="uploadbtn">Upload</button>
-          </div>
-
-        </form>
-    </body>
-
-
+            <button type="button" id = nextButton> Next </button>
+	    </div>	
+        <br><br>
+        <div id="image_container" style="flex-direction: row">
+            <img id="bowlImage" height="250px" src="../public/images/rice/emptybowl.png">
+            <img id="riceImage" height="250px" >
+            <div id="scoreTitle"> SCORE: {{score}}</div>
+        </div>
+</div>
+</div>   
+    
+    
+    
+<div id="announcement" class="alert alert-success fade show text-center" role="alert">
+<strong>How to play:</strong>
+<br> Click on the right answer in the middle of this page.<br>
+If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't worry we won't get those rice back</div>
+        
+<div class="card mb-3">
+<h6 class="card-header text-center">Leader Board</h6>
+<div class="card-body text-center">
+<table class="leadtable">
+  <tr>
+    <th>RANK</th>
+    <th>NAME</th> 
+    <th>GRAINS</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Smith</td> 
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Jackson</td> 
+    <td>94</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>John</td> 
+    <td>100</td>
+  </tr>
+    
+</table>
+</div>
+</div>
+</div>
+    
+</div>
+    
+</body>
 </html>
+
+<script>
+    var allQuestions = [{
+	question: 'What is the capital city of Australia?',
+	choices: ['Sydney', 'Melbourne', 'Canberra', 'London'],
+	correctAnswer: 2
+    },
+    {
+        question: 'Who won the 2014 FIFA World Cup?',
+        choices: ['Brazil', 'England', 'Germany', 'Spain'],
+        correctAnswer: 2
+    },
+    {
+        question: 'What book series is authored by J.K Rowling?',
+        choices: ['Game of Thrones', 'Hunger Games', 'Twilight', 'Harry Potter'],
+        correctAnswer: 3
+    },
+    {	
+        question: 'The Eiffel Tower is located in which following country?',
+        choices: ['Italy', 'France', 'Iceland', 'Mexico'],
+        correctAnswer: 1
+    }];
+    
+    
+    //Reference to tags
+    var questionTitle = document.getElementById('questionTitle');
+    var scpreTitle = document.getElementById('scoreTitle');
+    var selectionList = document.getElementById('selectionList');
+    var nextButton = document.getElementById('nextButton');
+
+    
+    var i = 0;
+    var length1 = allQuestions.length;
+    var Totalscore = 0;
+
+    nextButton.onclick = function() {
+        
+        if(i>=1)
+        checkCorrect(i-1)
+        
+        /*itterate through questions*/    
+        if(i>allQuestions.length -1){/*go to first when reached last*/
+           i=0      
+        }    
+        populateQuestion(i);
+        
+    
+        
+        i++;
+    };
+
+    function populateQuestion(qNum) {
+        var individualQuestion = allQuestions[i];
+        questionTitle.innerText = individualQuestion.question;
+
+        selectionList.innerHTML = ""; //reset choices list
+        
+        var choiceCount = 0;
+        for(key in individualQuestion.choices){
+            
+            var radioBtnName = 'question'+qNum;
+            var choiceText = individualQuestion.choices[key];
+            selectionList.appendChild(createLi(choiceCount,radioBtnName,choiceText));
+            
+            choiceCount++
+        }
+    }
+    
+    function checkCorrect(questionNum){
+        var correctChoice = allQuestions[questionNum].correctAnswer
+        var correctButton = document.getElementsByName("question"+questionNum)
+        
+        var selectedButton = $('input:radio:checked').val();
+        
+        if(selectedButton == correctChoice){
+            Totalscore+=10;
+            document.getElementById("scoreTitle").innerHTML = "Score:"+Totalscore;
+            if(Totalscore<100)
+            changeRice(Totalscore)
+            
+        }
+        else{
+            alert( "youre wrong The correct answer is "+ correctChoice)
+        }
+        
+    }
+
+    function createLi(choiceNum,RadioName, choiceText) {
+            var e = document.createElement('li');
+            var radioHtml = '<input type="radio" name="' + RadioName + '"'+'value="'+ choiceNum+ '"';    
+            radioHtml += '/>';
+            radioHtml += choiceText;        
+            e.innerHTML = radioHtml;        
+            return e;
+    }
+    
+    function changeRice(score){
+        document.getElementById("riceImage").src = "../public/images/rice/rice"+score+".gif"
+    }
+    
+    
+   
+</script>

@@ -5,8 +5,8 @@ const session = require("express-session")
 const cookieparser = require("cookie-parser")
 const mongoose = require("mongoose")
 
-const {User} = require("./user.js")
-const {Question} = require("./question.js")
+const {User} = require("./models/user.js")
+const {Question} = require("./models/question.js")
 
 const app = express()
 
@@ -73,6 +73,21 @@ app.get("/login.html", (req,res)=>{
 app.get("/signup.html", (req,res)=>{
     res.sendFile(__dirname + "/views/signup.html")
 })
+
+
+app.get("/math", (req,res)=>{
+    if(req.session.username){
+        res.render("math.hbs",{
+            username: req.session.username,
+            password: req.session.password,
+            totalgrains: req.session.totalgrains
+        })
+    }
+    else{
+        res.sendFile(__dirname + "/views/math.html")
+    }
+})
+
 
 app.get("/editprofile.html", (req,res)=>{
     if(req.session.username){
@@ -181,6 +196,30 @@ app.post("/add", urlencoder, (req,res)=>{
     user.save().then((doc)=>{
         console.log("Added user")
         res.redirect("/users")
+    }, (err)=>{
+        res.send(err)
+    })
+})
+
+app.post("/addquestion", urlencoder, (req,res)=>{
+    console.log("POST /addquestion")
+    let category = req.body.cat
+    let stmt = req.body.stmt
+    let choices = [req.body.c1,req.body.c2,req.body.c3,req.body.c4]
+    let correct = req.body.ans - 1
+    
+    let question = new Question({
+        category: category,
+        question: stmt,
+        choices: choices,
+        correctans: correct
+    })
+    
+    question.save().then((doc)=>{
+        console.log("Added question")
+        res.render("uploadquestion.hbs",{
+            username: req.session.username
+        })
     }, (err)=>{
         res.send(err)
     })
