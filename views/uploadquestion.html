@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link href="./fontawesome/css/all.css" rel="stylesheet">
+        <link href="css/all.css" rel="stylesheet" type="text/css">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -13,7 +13,7 @@
             .home{
                 height: 50;
                 width: 100%;
-                background-image: url("image/roce.jpg")
+                background-image: url("images/roce.jpg")
             }    
             
             .navbar{
@@ -73,7 +73,7 @@
             <nav class="navbar fixed-top navbar-expand-lg text-nowrap navbar-light" style="background-color: #7fcdff;">
                 <div class="container">
                   <a class="p-0 navbar-brand" href="index.html">
-                        <img class="mx-2" height="38px" src="krustykrab.png" alt="" href=index.html>
+                        <img class="mx-2" height="38px" src="images/freerice.png" alt="" href=index.html>
                         <strong class="d-lg-none d-xl-inline">FreeRice  </strong>
                     </a>
                     <button class="navbar-toggler ml-auto" type="button" data-toggle="modal" data-target="#homepage_settings_modal">
@@ -169,16 +169,18 @@
             
             <br><br>
 
-            <label><b>CORRECT ANSWER: </b></label>
-            <input type="text" placeholder="Input the correct answer" required>
-              
-            <br><br>
             
-            <label><b>WRONG CHOICES: </b></label>
+              
+     
+            <label><b>CHOICES: </b></label>
             <input type="text" placeholder="Input the choice#1 " required>
             <input type="text" placeholder="Input the choice#2 " required>
             <input type="text" placeholder="Input the choice#3 " required>
-              
+            <input type="text" placeholder="Input the choice#4 " required>
+            
+            <br>
+            <label><b>CORRECT ANSWER: </b></label>
+            <input type="number" placeholder="Input the number of the correct answer" min="1" max="4" required>  
               
             <hr class="border">
 
