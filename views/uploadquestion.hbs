@@ -155,14 +155,14 @@
      
     
 
-<form>
+<form action="addquestion" method="POST">
           <div class="container">
             <h1>Create a Question</h1>
             <p>Please fill in this form to create a question</p>
             <hr class="border">
 
             <label><b>Question: </b></label>
-            <input type="text" placeholder="Input the Question" name="question" required>
+            <input style="width: 600px;"type="text" placeholder="Input the Question" name="stmt" required>
             <br><br>
             <label for="psw"><b>CATEGORY</b></label> <br>
             <input type="radio" name="category" value="Science"> SCIENCE<br>
@@ -174,14 +174,14 @@
           
             
             <label><b>CHOICES: </b></label>
-            <input type="text" placeholder="Input the choice#1 " required>
-            <input type="text" placeholder="Input the choice#2 " required>
-            <input type="text" placeholder="Input the choice#3 " required>
-            <input type="text" placeholder="Input the choice#4 " required>
+            <input type="text" name="c1" placeholder="Input the choice#1 " required>
+            <input type="text" name="c2" placeholder="Input the choice#2 " required>
+            <input type="text" name="c3" placeholder="Input the choice#3 " required>
+            <input type="text" name="c4" placeholder="Input the choice#4 " required>
             <br>
               
             <label><b>CORRECT ANSWER: </b></label>
-            <input type="number" placeholder="Input the number of the correct answer" min="1" max="4" required>  
+            <input type="number" name="ans" placeholder="Input the number of the correct answer" min="1" max="4" required>  
               
 
             <hr class="border">

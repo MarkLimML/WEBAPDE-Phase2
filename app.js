@@ -281,7 +281,7 @@ app.post("/add", urlencoder, (req,res)=>{
 
 app.post("/addquestion", urlencoder, (req,res)=>{
     console.log("POST /addquestion")
-    let category = req.body.cat
+    let category = req.body.category
     let stmt = req.body.stmt
     let choices = [req.body.c1,req.body.c2,req.body.c3,req.body.c4]
     let correct = req.body.ans - 1
@@ -295,6 +295,7 @@ app.post("/addquestion", urlencoder, (req,res)=>{
     
     question.save().then((doc)=>{
         console.log("Added question")
+        console.log(doc)
         res.render("uploadquestion.hbs",{
             username: req.session.username
         })
