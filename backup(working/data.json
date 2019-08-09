@@ -240,7 +240,7 @@
 {
     "_id" : ObjectId("5d47d64b2c74c34a48ee6ced"),
     "category" : "English",
-    "question" : "What three letter word means the same as \"to ingest\"?",
+    "question" : "What three letter word means the same as 'to ingest'?",
     "choices" : [ 
         "eat", 
         "bat", 
@@ -276,4 +276,19 @@
         "Not Applicable"
     ],
     "correctans" : 3
+}
+
+/* 21 */
+{
+    "_id" : ObjectId("5d495f5cb31dfc55b42edfa9"),
+    "choices" : [ 
+        "right", 
+        "down", 
+        "up", 
+        "left"
+    ],
+    "category" : "English",
+    "question" : "What is the opposite of left?",
+    "correctans" : 0,
+    "__v" : 0
 }
