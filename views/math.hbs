@@ -231,104 +231,17 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
 </html>
 
 <script>
-    var allQuestions = [
-	    /* 4 */
-    {
-//        "_id" : ObjectId("5d468a67a4772c4ce00b4edd"),
-        category : "Math",
-        question : "9x10/2 = ?",
-        choices : [ 
-            "45", 
-            "90", 
-            "40", 
-            "180"
-        ],
-        correctans : 0
+    var allQuestions = [{{#each questions}}
+   {{#whenequal this.category "Math"}}
+   {
+       category : "{{category}}", question : "{{{question}}}", 
+       choices : [
+       {{#each choices}}
+       "{{this}}",
+       {{/each}}], correctans : {{correctans}}
     },
-
-    /* 5 */
-    {
-//        "_id" : ObjectId("5d468afca4772c4ce00b4eeb"),
-        category : "Math",
-        question : "50-42/2 = ?",
-        choices : [ 
-            "28", 
-            "4", 
-            "29", 
-            "8"
-        ],
-        correctans : 2
-    },
-
-    /* 6 */
-    {
-//        "_id" : ObjectId("5d468b4da4772c4ce00b4ef8"),
-        category : "Math",
-        question : "30x0+100/2 = ?",
-        choices : [ 
-            "0", 
-            "50", 
-            "100", 
-            "1500"
-        ],
-        correctans : 1
-    },
-                        
-        /* 14 */
-    {
-//        "_id" : ObjectId("5d47d3572c74c34a48ee6ce9"),
-        category : "Math",
-        question : "What Is An Angle Of Less Than 90 Degrees Known As?",
-        choices : [ 
-            "Acute Angle", 
-            "Obtuse Angle", 
-            "Straight Angle", 
-            "Right Angle"
-        ],
-        correctans : 0
-    },
-
-    /* 15 */
-    {
-//        "_id" : ObjectId("5d47d42c2c74c34a48ee6cea"),
-        category : "Math",
-        question : "What geometric shape has 4 equal sides?",
-        choices : [ 
-            "Pentagon", 
-            "Circle", 
-            "Triangle", 
-            "Square"
-        ],
-        correctans : 3
-    },
-
-    /* 16 */
-    {
-//        "_id" : ObjectId("5d47d4aa2c74c34a48ee6ceb"),
-        category : "Math",
-        question : "What is the only digit that has the same number of letters as its value?",
-        choices : [ 
-            "Hundred", 
-            "Two", 
-            "Four", 
-            "Ten"
-        ],
-        correctans : 2
-    },
-
-    /* 17 */
-    {
-//        "_id" : ObjectId("5d47d52f2c74c34a48ee6cec"),
-        category : "Math",
-        question : "The square root of 1 is?",
-        choices : [ 
-            "1", 
-            "0.2", 
-            "0", 
-            "0.5"
-        ],
-        correctans : 0
-    }]
+    {{/whenequal}}
+    {{/each}}];
 
 
     

@@ -231,102 +231,17 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
 </html>
 
 <script>
-    var allQuestions = [{
-	//    "_id" : ObjectId("5d468912a4772c4ce00b4eb1"),
-    category : "Science",
-    question : "What is H2O?",
-    "choices" : [ 
-        "Isopropyl Alcohol", 
-        "Acid", 
-        "Water", 
-        "Hydrogen Peroxide"
-    ],
-    correctans : 2
+    var allQuestions = [{{#each questions}}
+   {{#whenequal this.category "Science"}}
+   {
+       category : "{{category}}", question : "{{{question}}}", 
+       choices : [
+       {{#each choices}}
+       "{{this}}",
+       {{/each}}], correctans : {{correctans}}
     },
-
-    /* 2 */
-    {
-//        "_id" : ObjectId("5d46898ba4772c4ce00b4ec3"),
-        category : "Science",
-        question : "What is the boiling point of water?",
-        choices : [ 
-            "0 celsius", 
-            "27 celsius", 
-            "100 celsius", 
-            "273 celsius"
-        ],
-        correctans : 2
-    },
-
-    /* 3 */
-    {
-//        "_id" : ObjectId("5d468a21a4772c4ce00b4ed3"),
-        category : "Science",
-        question : "Who invented the telescope?",
-        choices : [ 
-            "Galileo Galilei", 
-            "Albert Einstien", 
-            "Elon Musk", 
-            "Nikola Tesla"
-        ],
-        correctans : 0
-    },
-                        
-     /* 10 */
-    {
-//        "_id" : ObjectId("5d47d18d323d3fac39884615"),
-        category : "Science",
-        question : "What Is Toxicology The Study Of?",
-        choices : [ 
-            "Life", 
-            "Medicine", 
-            "Weather", 
-            "Poisons"
-        ],
-        correctans : 3
-    },
-
-    /* 11 */
-    {
-//        "_id" : ObjectId("5d47d1f52c74c34a48ee6ce6"),
-        category : "Science",
-        question : "What is the chemical symbol for copper?",
-        choices : [ 
-            "Cu", 
-            "Ag", 
-            "Fe", 
-            "Mg"
-        ],
-        correctans : 0
-    },
-
-    /* 12 */
-    {
-//        "_id" : ObjectId("5d47d2782c74c34a48ee6ce7"),
-        category : "Science",
-        question : "If you're in the northern hemisphere, Polaris, the North Star, can be found by looking which direction?",
-        choices : [ 
-            "South", 
-            "North", 
-            "West", 
-            "East"
-        ],
-        correctans : 1
-    },
-
-    /* 13 */
-    {
-//        "_id" : ObjectId("5d47d3012c74c34a48ee6ce8"),
-        category : "Science",
-        question : "This ancient attempt to transmute base metals into gold was called ________.",
-        choices : [ 
-            "Transfusion", 
-            "Surgery", 
-            "Alchemy", 
-            "Cooking"
-        ],
-        correctans : 2
-    }]
+    {{/whenequal}}
+    {{/each}}];
 
     
     //Reference to tags
