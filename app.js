@@ -57,9 +57,20 @@ app.get(["/","/index.html"], (req,res)=>{
     
     if(req.session.username){
         console.log(req.session.username)
-        res.render("index.hbs",{
-            username: req.session.username
+        Question.find({}, (err, doc)=>{
+            if(err){
+                res.send(err)
+            }else if(!doc){
+                res.send("No questions available")
+            }else{
+                console.log(doc)
+                res.render("index.hbs",{
+                    username: req.session.username,
+                    questions: doc
+                })
+            }
         })
+        
     }
     else{
         console.log(User)
@@ -83,10 +94,18 @@ app.get("/signup.html", (req,res)=>{
 
 app.get("/math", (req,res)=>{
     if(req.session.username){
-        res.render("math.hbs",{
-            username: req.session.username,
-            password: req.session.password,
-            totalgrains: req.session.totalgrains
+        Question.find({}, (err, doc)=>{
+            if(err){
+                res.send(err)
+            }else if(!doc){
+                res.send("No questions available")
+            }else{
+                console.log(doc)
+                res.render("math.hbs",{
+                    username: req.session.username,
+                    questions: doc
+                })
+            }
         })
     }
     else{
@@ -95,24 +114,23 @@ app.get("/math", (req,res)=>{
 })
 
 app.get("/english", (req,res)=>{
-    if(req.session.username){
-        res.render("index.hbs",{
-            username: req.session.username,
-            password: req.session.password,
-            totalgrains: req.session.totalgrains
-        })
-    }
-    else{
-        res.redirect("/")
-    }
+    res.redirect("/")
 })
 
 app.get("/science", (req,res)=>{
     if(req.session.username){
-        res.render("science.hbs",{
-            username: req.session.username,
-            password: req.session.password,
-            totalgrains: req.session.totalgrains
+        Question.find({}, (err, doc)=>{
+            if(err){
+                res.send(err)
+            }else if(!doc){
+                res.send("No questions available")
+            }else{
+                console.log(doc)
+                res.render("science.hbs",{
+                    username: req.session.username,
+                    questions: doc
+                })
+            }
         })
     }
     else{
@@ -344,3 +362,9 @@ app.post("/preferences", urlencoder,(req,res)=>{
 app.listen(3000, ()=>{
     console.log("Live at port 3000")
 })
+
+hbs.registerHelper('whenequal', function(v1, v2, options) {
+    if(v1==v2) {
+      return options.fn(this);
+    }
+  });
