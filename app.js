@@ -359,8 +359,8 @@ app.post("/preferences", urlencoder,(req,res)=>{
     res.redirect("/")
 })
 
-app.listen(3000, ()=>{
-    console.log("Live at port 3000")
+app.listen(process.env.PORT || 3000, ()=>{
+    console.log("Live at port "+process.env.PORT)
 })
 
 hbs.registerHelper('whenequal', function(v1, v2, options) {
