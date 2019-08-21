@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
   "repository": {
@@ -26,5 +25,8 @@
     "gh-pages": "^2.1.0",
     "hbs": "^4.0.4",
     "mongoose": "^5.6.8"
+  },
+  "engines" : {
+    "node" : "10.0.0"
   }
 }
