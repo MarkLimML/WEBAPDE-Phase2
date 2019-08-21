@@ -16,7 +16,7 @@ app.use(express.static(publicDir))
 app.use(express.static(modelsDir))
 
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb://localhost:27017/userss19", {
+mongoose.connect("mongodb+srv://test:1234@cluster0-u8a7m.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser : true
 })
 
