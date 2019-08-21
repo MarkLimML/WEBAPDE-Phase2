@@ -15,9 +15,17 @@ var modelsDir = require('path').join(__dirname,'/models')
 app.use(express.static(publicDir))
 app.use(express.static(modelsDir))
 
+var uri = 'mongodb+srv://test:1234@cluster0-u8a7m.mongodb.net/userss19';
+
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb+srv://test:1234@cluster0-u8a7m.mongodb.net/test?retryWrites=true&w=majority", {
-    useNewUrlParser : true
+mongoose.connect(uri, {
+    useNewUrlParser : true,
+}, (err)=>{
+    if(err){
+        console.log(err)
+    }else{
+        console.log("Success")
+    }
 })
 
 const urlencoder = bodyparser.urlencoded({
@@ -349,14 +357,6 @@ app.post("/update", urlencoder, (req,res)=>{
             res.redirect("/users")
         }
     })
-})
-
-app.post("/preferences", urlencoder,(req,res)=>{
-    let fs = req.body.fontsize
-    res.cookie("font size", fs,{
-        maxAge: 10000*60*60*24*365
-    })
-    res.redirect("/")
 })
 
 app.listen(process.env.PORT || 3000, ()=>{
