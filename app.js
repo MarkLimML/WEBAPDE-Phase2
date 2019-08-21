@@ -15,17 +15,12 @@ var modelsDir = require('path').join(__dirname,'/models')
 app.use(express.static(publicDir))
 app.use(express.static(modelsDir))
 
-var uri = 'mongodb+srv://test:1234@cluster0-u8a7m.mongodb.net/userss19';
+var uri = 'mongodb+srv://test:1234@cluster0-u8a7m.mongodb.net/test?retryWrites=true&w=majority';
 
 mongoose.Promise = global.Promise
 mongoose.connect(uri, {
     useNewUrlParser : true,
-}, (err)=>{
-    if(err){
-        console.log(err)
-    }else{
-        console.log("Success")
-    }
+    dbName: "userss19"
 })
 
 const urlencoder = bodyparser.urlencoded({
