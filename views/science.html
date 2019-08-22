@@ -49,11 +49,39 @@
                 position: relative;
                 
             }
-#scoreTitle{
+          #scoreTitle{
               font-family: "Times New Roman", Times, serif;
               font-size: 20px;
               color: white;
               font-weight: bold
+          }
+          input[type="radio"] {
+          opacity: 0;
+          position: fixed;
+          width: 0;
+          }
+          
+          label{
+            display: inline-block;
+            background-color:azure;
+            padding: 10px 20px;
+            font-family: sans-serif, Arial;
+            font-size: 16px;
+            border: 2px solid cadetblue;
+            border-radius: 4px;
+          }
+          
+          label:hover{
+          background-color: #dfd;
+          }
+          
+          input[type="radio"]:focus + label {
+            border: 4px solid #444;
+          }
+          
+          input[type="radio"]:checked + label {
+            background-color: #bfb;
+            border-color:cadetblue;
           }
         </style>
     
@@ -167,10 +195,7 @@
 		
             <h2 id='questionTitle'> </h2>
             <ul id ='selectionList'> </ul>
-            <p> Click the next button to go to the next question! </p>
             
-
-            <button type="button" id = nextButton> Next </button>
 	    </div>	
         <br><br>
         <div id="image_container" style="flex-direction: row">
@@ -191,29 +216,14 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
 <div class="card mb-3">
 <h6 class="card-header text-center">Leader Board</h6>
 <div class="card-body text-center">
-<table class="leadtable">
+<table id="leaderboard" class="leadtable">
   <tr>
     <th>RANK</th>
     <th>NAME</th> 
     <th>GRAINS</th>
   </tr>
-  <tr>
-    <td>1</td>
-    <td>Smith</td> 
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Jackson</td> 
-    <td>94</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>John</td> 
-    <td>100</td>
-  </tr>
-    
 </table>
+
 </div>
 </div>
 </div>
@@ -328,26 +338,37 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
     var selectionList = document.getElementById('selectionList');
     var nextButton = document.getElementById('nextButton');
 
+    var LeadTable = document.getElementById("leaderboard");
+    var userNames = ["AAAA", "BBBB", "CCCCC"];
+    var userGrains = [500,20,30000];
     
     var i = 0;
     var length1 = allQuestions.length;
     var Totalscore = 0;
 
-    nextButton.onclick = function() {
+    function initQuestion(){
+        sortTable();
+        populateQuestion(0)
+        i=1
         
-        if(i>=1)
-        checkCorrect(i-1)
+        populateLeaderBoard()
+    }
+    
+    function checkAns(){
+        
+        if(i>=1){
+            checkCorrect(i-1)
+        }
         
         /*itterate through questions*/    
         if(i>allQuestions.length -1){/*go to first when reached last*/
            i=0      
         }    
+        console.log("Next Question")
         populateQuestion(i);
         
-    
-        
-        i++;
-    };
+        i++; 
+    }
 
     function populateQuestion(qNum) {
         var individualQuestion = allQuestions[i];
@@ -383,11 +404,11 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
         
     }
 
-    function createLi(choiceNum,RadioName, choiceText) {
+     function createLi(choiceNum,RadioName, choiceText) {
             var e = document.createElement('li');
-            var radioHtml = '<input type="radio" name="' + RadioName + '"'+'value="'+ choiceNum+ '"';    
+            var radioHtml = '<input type="radio" onclick="checkAns()" name="' + RadioName + '"'+ 'id="'+ choiceNum+ '"' +'value="'+ choiceNum+ '"';    
             radioHtml += '/>';
-            radioHtml += choiceText;        
+            radioHtml += '<label ' + 'for="' +choiceNum + '">' +choiceText + '</label>';        
             e.innerHTML = radioHtml;        
             return e;
     }
@@ -396,6 +417,58 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
         document.getElementById("riceImage").src = "images/rice/rice"+score+".gif"
     }
     
+     //leaderboard
+    function populateLeaderBoard(){
+        
+        Count = 0;
+        
+        for(key in userNames){
+            LeadTable.appendChild(createTable(Count,userNames[Count],userGrains[Count]));
+            
+            Count++
+        }
+
+    }
+    
+    
+    
+    function createTable(Count, userName, userGrains){
+       
+        var e = document.createElement("tr")
+        
+        Count++
+   
+        
+        var contentHtml = '<th>' +Count + '</th>';
+        contentHtml+= '<th>' + userName + '</th>';
+        contentHtml+= '<th>' + userGrains + '</th>';
+        
+        e.innerHTML = contentHtml;
+        
+        return e;
+        
+    }
+    function sortTable(){
+    var len = userGrains.length;
+    var swapped;
+    do {
+        swapped = false;
+        for (var i = 0; i < len; i++) {
+            if (userGrains[i] < userGrains[i + 1]) {
+                var tmpgrain = userGrains[i];
+                var tmpname = userNames[i]
+                userGrains[i] = userGrains[i + 1];
+                userGrains[i + 1] = tmpgrain;
+                userNames[i] = userNames[i + 1];
+                userNames[i + 1] = tmpname;
+                swapped = true;
+            }
+        }
+    } while (swapped);
+
+        
+    }
+   
     
    
 </script>
