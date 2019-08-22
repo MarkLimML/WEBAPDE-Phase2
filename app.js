@@ -134,23 +134,28 @@ app.post("/scoreup", (req,res)=>{
         if(err){
             res.send(err)
         }else{
-            req.session.totalgrains = doc.totalgrains
+            console.log("Updated")
+            console.log(doc)
         }
     })
+    var newgrains = req.session.totalgrains + 10
+    req.session.totalgrains = newgrains
+    console.log(req.session)
 })
 
 app.get("/editprofile.html", (req,res)=>{
     if(req.session.username){
         User.findOne({
             username: req.session.username
-        }, (err,docs)=>{
+        }, (err,doc)=>{
             if(err){
                 res.send(err)
             }else{
+                console.log(req.session)
                 res.render("editprofile.hbs",{
-                    username: req.session.username,
-                    password: req.session.password,
-                    totalgrains: req.session.totalgrains
+                    username: doc.username,
+                    password: doc.password,
+                    totalgrains: doc.totalgrains
                 })
             }
         })
