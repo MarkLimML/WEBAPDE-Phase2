@@ -1,0 +1,151 @@
+<html>
+    <head>
+        <link href="css/all.css" rel="stylesheet" type="text/css">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+    </head>
+    
+      <style>
+          .all{
+ 
+          width:500px;
+          height:100%;
+          margin:0 auto;
+
+          padding:30px;
+          box-sizing: border-box;
+
+          color:rgba(0,0,0,0.8);
+          font-family:helvectiva;
+          font-size: 1.2rem;
+        }
+            .home{
+                height: 50;
+                width: 100%;
+                background-image: url("images/roce.jpg")
+            }    
+            
+            .navbar{
+                background-color:#76b6c4;
+                border-color: #7fcdff;
+            }
+            .card-header{
+                background-color: #1da2d8;
+                
+            }
+            .card .card-body{
+                background-color: #7fcdff;
+            }
+          
+            .leadtable{
+              background-color:rgb(255,255,255);
+              width:500px;
+              height:100%;
+              margin:0 auto;
+              padding:30px;
+              background-color: #7fcdff;
+            }
+          
+            #selectionlist{
+                list-style:none
+            }
+        
+             #bowlImage{
+            position: absolute;
+            left:32%
+            }
+            #riceImage{
+                position: relative;
+                
+            }
+            hr.border{
+              color: white
+          }
+
+        </style>
+    
+    <body class="home page-template page-template-homepage page-template-homepage-php page page-id-8 page-homepage">
+ 
+        <div class="header">
+            <nav class="navbar fixed-top navbar-expand-lg text-nowrap navbar-light" style="background-color: #7fcdff;">
+                <div class="container">
+                  <a class="p-0 navbar-brand" href="index.html">
+                        <img class="mx-2" height="38px" src="images/freerice.png" alt="" href=index.html>
+                        <strong class="d-lg-none d-xl-inline">FreeRice  </strong>
+                    </a>
+                    <button class="navbar-toggler ml-auto" type="button" data-toggle="modal" data-target="#homepage_settings_modal">
+                        <span class="navbar-icon"><span class="fas fa-cog fa-fw " aria-hidden="true"></span></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item dropdown mx-1">
+
+                                    <a href="english" class="nav-link"><span class="fas fa-book fa-fw " aria-hidden="true"></span> English</a>
+                                    </li>   
+                                
+                                    <li class="nav-item mx-1" id="login">
+                                    <a class="nav-link" href="math" title="You need to log in."><span class="fas fa-book fa-fw " aria-hidden="true"></span> Math</a>
+                                    </li>
+                                
+                                    <li class="nav-item mx-1 dropdown">
+
+                                     <a href="science" class="nav-link"><span class="fas fa-book fa-fw " aria-hidden="true"></span>Science</a>
+                                    </li>
+                                    
+                                    </ul>
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item mx-1 dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <span class="fas fa-user-times fa-fw " aria-hidden="true"></span> <span class="d-lg-none d-xl-inline" style="color: #000">Guest</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="login.html"><span class="fas fa-sign-in-alt fa-fw " aria-hidden="true" title="Log in"></span> Log in</a>
+                                    <a class="dropdown-item" href="signup.html"><span class="fas fa-pencil-alt fa-fw " aria-hidden="true" title="Sign up"></span> Sign up</a>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="container" role="main" id="content">
+            
+        </div>
+        <br><br><br>
+        
+
+
+  <div class=all>
+        <ul>npm packages used:
+            <li>express</li>
+            <li>body-parser</li>
+            <li>hbs</li>
+            <li>express-session</li>
+            <li>cookie-parser</li>
+            <li>mongoose</li>
+            <li>crypto</li>
+        </ul>
+        <ul>3rd party libraries:
+            <li>fontawesome 4.7.0</li>
+            <li>bootstrap 4.3.1</li>
+            <li>jquery 3.3.1</li>
+        </ul>
+            </div>
+        
+        
+            <script>
+            function error() {
+              alert("Please log-in first")
+            }
+            </script>
+
+      
+    </body>
+</html>
