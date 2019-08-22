@@ -244,7 +244,7 @@ app.post("/login", urlencoder,(req,res)=>{
         if(err){
             res.send(err)
         }else if(!doc){
-            
+            res.send("User not found")
         }else{
             console.log(doc)
             req.session._id = doc._id
