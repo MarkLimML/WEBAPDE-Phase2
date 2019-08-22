@@ -281,8 +281,12 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
     var h5Elements = document.getElementsByTagName("h5")[0];
     
     var LeadTable = document.getElementById("leaderboard");
-    var userNames = ["AAAA", "BBBB", "CCCCC"];
-    var userGrains = [500,20,30000];
+    var userNames = [{{#each users}}
+    "{{username}}",
+    {{/each}}];
+    var userGrains = [{{#each users}}
+    "{{totalgrains}}",
+    {{/each}}];
     
     var i = 0;
     var length1 = allQuestions.length;
