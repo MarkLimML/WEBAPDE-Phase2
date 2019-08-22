@@ -4,6 +4,7 @@ const hbs = require("hbs")
 const session = require("express-session")
 const cookieparser = require("cookie-parser")
 const mongoose = require("mongoose")
+const crypto = require("crypto")
 
 const {User} = require("./models/user.js")
 const {Question} = require("./models/question.js")
@@ -127,6 +128,16 @@ app.get("/science", (req,res)=>{
     }
 })
 
+app.get("/about", (req,res)=>{
+    if(req.session.username){
+        res.render("about.hbs",{
+            username: req.session.username
+        })
+    }else{
+        res.sendFile(__dirname + "/views/about.html")
+    }
+})
+
 app.post("/scoreup", (req,res)=>{
     User.updateOne({
         _id: req.session._id
@@ -150,8 +161,6 @@ app.post("/scoreup", (req,res)=>{
         }else{
             console.log("Found One")
             console.log(doc)
-            req.session.username = doc.username
-            req.session.password = doc.password
             req.session.totalgrains = doc.totalgrains
             console.log(req.session.totalgrains)
             req.session.save()
@@ -196,6 +205,7 @@ app.get("/uploadquestion.html",(req,res)=>{
 })
 
 app.post("/login", urlencoder,(req,res)=>{
+    console.log("POST /login")
     let username = req.body.login_username
     let password = req.body.login_password
     
@@ -206,16 +216,22 @@ app.post("/login", urlencoder,(req,res)=>{
         if(err){
             res.send(err)
         }else if(!doc){
-            res.send("User does not exist")
+            
         }else{
             console.log(doc)
             req.session._id = doc._id
             req.session.username = doc.username
-            req.session.password = doc.password
+            const password = doc.password;
+            const cipher = crypto.createCipher('aes128', 'a password');
+            var encrypted = cipher.update(password, 'utf8', 'hex');
+            encrypted += cipher.final('hex');
+            console.log(encrypted);
+            req.session.password = encrypted
             req.session.totalgrains = doc.totalgrains
             res.redirect("/")
         }
     })
+
 })
 
 app.get("/logout", urlencoder,(req,res)=>{
@@ -266,23 +282,6 @@ app.post("/changepass", urlencoder, (req,res)=>{
     })
 })
 
-app.post("/add", urlencoder, (req,res)=>{
-    console.log("POST /add")
-    let username = req.body.un
-    let password = req.body.pw
-    
-    let user = new User({
-        username,password
-    })
-    
-    user.save().then((doc)=>{
-        console.log("Added user")
-        res.redirect("/users")
-    }, (err)=>{
-        res.send(err)
-    })
-})
-
 app.post("/addquestion", urlencoder, (req,res)=>{
     console.log("POST /addquestion")
     let category = req.body.category
@@ -305,35 +304,6 @@ app.post("/addquestion", urlencoder, (req,res)=>{
         })
     }, (err)=>{
         res.send(err)
-    })
-})
-
-app.post("/delete", urlencoder, (req,res)=>{
-    console.log("POST /delete")
-    Question.deleteOne({
-        _id: req.body.id
-    }, (err,doc)=>{
-        if(err){
-            res.send(err)
-        }else{
-            res.redirect("/users")
-        }
-    })
-})
-
-app.post("/update", urlencoder, (req,res)=>{
-    console.log("POST /update")
-    User.update({
-        _id: req.body.id
-    }, {
-        username: req.body.un,
-        password: req.body.pw
-    }, (err,doc)=>{
-        if(err){
-            res.send(err)
-        }else{
-            res.redirect("/users")
-        }
     })
 })
 
