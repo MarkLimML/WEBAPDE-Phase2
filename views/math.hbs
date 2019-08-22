@@ -49,15 +49,44 @@
                 position: relative;
                 
             }
-#scoreTitle{
+          #scoreTitle{
               font-family: "Times New Roman", Times, serif;
               font-size: 20px;
               color: white;
               font-weight: bold
           }
+          
+          input[type="radio"] {
+          opacity: 0;
+          position: fixed;
+          width: 0;
+          }
+          
+          label{
+            display: inline-block;
+            background-color:azure;
+            padding: 10px 20px;
+            font-family: sans-serif, Arial;
+            font-size: 16px;
+            border: 2px solid cadetblue;
+            border-radius: 4px;
+          }
+          
+          label:hover{
+          background-color: #dfd;
+          }
+          
+          input[type="radio"]:focus + label {
+            border: 4px solid #444;
+          }
+          
+          input[type="radio"]:checked + label {
+            background-color: #bfb;
+            border-color:cadetblue;
+          }
         </style>
     
-    <body class="home page-template page-template-homepage page-template-homepage-php page page-id-8 page-homepage">
+    <body class="home page-template page-template-homepage page-template-homepage-php page page-id-8 page-homepage" onload="initQuestion()">
  
         <div class="header">
             <nav class="navbar fixed-top navbar-expand-lg text-nowrap navbar-light" style="background-color: #7fcdff;">
@@ -72,11 +101,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
                                     <li class="nav-item dropdown mx-1">
-<!--
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fas fa-book fa-fw " aria-hidden="true"></span> Manga</a>
-                                    <div class="dropdown-menu">
-                                    </div>
--->
+
                                     <a href="english" class="nav-link"><span class="fas fa-book fa-fw " aria-hidden="true"></span> English</a>
                                     </li>   
                                 
@@ -85,38 +110,17 @@
                                     </li>
                                 
                                     <li class="nav-item mx-1 dropdown">
-<!--
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fas fa-users fa-fw " aria-hidden="true"></span> Community</a>
-                                    <div class="dropdown-menu">
-                                    </div>
--->
+
                                      <a href="science" class="nav-link"><span class="fas fa-book fa-fw " aria-hidden="true"></span>Science</a>
                                     </li>
                                     <li class="nav-item mx-1 dropdown">
-<!--                                    <a href="login.html" class="nav-link"><span class="fas fa-info-circle fa-fw " aria-hidden="true"></span> Sales </a>-->
+
                                     <div class="dropdown-menu">
                                     
                                     </div>
                                     </li>
                                     </ul>
-<!--
-                        <form id="quick_search_form" method="get" action="/quick_search" role="search" class="form-inline mx-1 quick-search">
-                            <div class="input-group">
-                            <div class="input-group-prepend">
-                            <select class="form-control" id="quick_search_type" name="type">
-                            <option value="all">All</option>
-                            <option selected="" value="titles">Manga</option>
-                            <option value="groups">Groups</option>
-                            <option value="users">Users</option>
-                            </select>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Quick search" name="term" id="quick_search_input" required="">
-                            <span class="input-group-append">
-                            <button class="btn btn-secondary" type="submit" id="quick_search_button" name="submit"><span class="fas fa-search fa-fw " aria-hidden="true"></span></button>
-                            </span>
-                            </div>
-                        </form>
--->
+
                         <ul class="navbar-nav">
                             <li class="nav-item mx-1 dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -174,11 +178,7 @@
                 {{/each}}
             </ul>
 
-            <p> Click the next button to go to the next question! </p>
-            
-
-            <button type="button" id = nextButton> Next </button>
-	    </div>	
+   	    </div>	
         <br><br>
         <div id="image_container" style="flex-direction: row">
             <img id="bowlImage" height="250px" src="images/rice/emptybowl.png">
@@ -198,27 +198,13 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
 <div class="card mb-3">
 <h6 class="card-header text-center">Leader Board</h6>
 <div class="card-body text-center">
-<table class="leadtable">
+<table id="leaderboard" class="leadtable">
   <tr>
     <th>RANK</th>
     <th>NAME</th> 
     <th>GRAINS</th>
   </tr>
-  <tr>
-    <td>1</td>
-    <td>Smith</td> 
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Jackson</td> 
-    <td>94</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>John</td> 
-    <td>100</td>
-  </tr>
+
     
 </table>
 </div>
@@ -251,29 +237,41 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
     var selectionList = document.getElementById('selectionList');
     var nextButton = document.getElementById('nextButton');
 
+    var LeadTable = document.getElementById("leaderboard");
+    var userNames = ["AAAA", "BBBB", "CCCCC"];
+    var userGrains = [500,20,30000];
     
     var i = 0;
     var length1 = allQuestions.length;
     var Totalscore = 0;
 
-    nextButton.onclick = function() {
+    function initQuestion(){
+        sortTable();
+        populateQuestion(0)
+        i=1
         
-        if(i>=1)
-        checkCorrect(i-1)
+        populateLeaderBoard()
+    }
+    
+    function checkAns(){
+        
+        if(i>=1){
+            checkCorrect(i-1)
+        }
         
         /*itterate through questions*/    
         if(i>allQuestions.length -1){/*go to first when reached last*/
            i=0      
         }    
+        console.log("Next Question")
         populateQuestion(i);
         
+        i++; 
+    }
     
-        
-        i++;
-    };
-
     function populateQuestion(qNum) {
         var individualQuestion = allQuestions[i];
+        console.log(allQuestions);
         questionTitle.innerText = individualQuestion.question;
 
         selectionList.innerHTML = ""; //reset choices list
@@ -306,11 +304,11 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
         
     }
 
-    function createLi(choiceNum,RadioName, choiceText) {
+   function createLi(choiceNum,RadioName, choiceText) {
             var e = document.createElement('li');
-            var radioHtml = '<input type="radio" name="' + RadioName + '"'+'value="'+ choiceNum+ '"';    
+            var radioHtml = '<input type="radio" onclick="checkAns()" name="' + RadioName + '"'+ 'id="'+ choiceNum+ '"' +'value="'+ choiceNum+ '"';    
             radioHtml += '/>';
-            radioHtml += choiceText;        
+            radioHtml += '<label ' + 'for="' +choiceNum + '">' +choiceText + '</label>';        
             e.innerHTML = radioHtml;        
             return e;
     }
@@ -319,6 +317,57 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
         document.getElementById("riceImage").src = "images/rice/rice"+score+".gif"
     }
     
+    //leaderboard
+    function populateLeaderBoard(){
+        
+        Count = 0;
+        
+        for(key in userNames){
+            LeadTable.appendChild(createTable(Count,userNames[Count],userGrains[Count]));
+            
+            Count++
+        }
+
+    }
     
+    
+    
+    function createTable(Count, userName, userGrains){
+       
+        var e = document.createElement("tr")
+        
+        Count++
+   
+        
+        var contentHtml = '<th>' +Count + '</th>';
+        contentHtml+= '<th>' + userName + '</th>';
+        contentHtml+= '<th>' + userGrains + '</th>';
+        
+        e.innerHTML = contentHtml;
+        
+        return e;
+        
+    }
+    
+    function sortTable(){
+    var len = userGrains.length;
+    var swapped;
+    do {
+        swapped = false;
+        for (var i = 0; i < len; i++) {
+            if (userGrains[i] < userGrains[i + 1]) {
+                var tmpgrain = userGrains[i];
+                var tmpname = userNames[i]
+                userGrains[i] = userGrains[i + 1];
+                userGrains[i + 1] = tmpgrain;
+                userNames[i] = userNames[i + 1];
+                userNames[i + 1] = tmpname;
+                swapped = true;
+            }
+        }
+    } while (swapped);
+
+        
+    }
    
 </script>
