@@ -41,14 +41,14 @@
                 list-style:none
             }
         
-             #bowlImage{
-            position: absolute;
-            left:32%
+            #bowlImage{
+                position: absolute;
+                left:32%
             }
             #riceImage{
                 position: relative;
-                
             }
+            
             .uploadbtn{
               background-color: #4CAF50;
               color: white;
@@ -81,34 +81,32 @@
                 background-color: #45a049;
         }
           
-          #textboxid{
+        #textboxid{
             width: 100%;
             font-size:14pt;
         }
           
-                    input[type="radio"] {
-          opacity: 0;
-          position: fixed;
-          width: 0;
-          }
+        input[type="radio"] {
+            opacity: 0;
+            position: fixed;
+            width: 0;
+        }
           
           .subject{
             display: inline-block;
-            background-color:azure;
+            background-color:rgb(255, 255, 255);
             padding: 10px 20px;
             font-family: sans-serif, Arial;
             font-size: 16px;
             border: 2px solid cadetblue;
             border-radius: 4px;
+            color: #000
           }
           
           .subject:hover{
           background-color: #dfd;
           }
           
-          .subject:onClick{
-              background-color:black;
-          }
           
           input[type="radio"]:focus + label {
             border: 4px solid #444;
@@ -203,7 +201,7 @@
             <hr class="border">
 
              <label><b>Question: </b></label>
-            <input id="textboxid" type="text" placeholder="Input the Question" name="question"  required>
+            <input id="textboxid" type="text" placeholder="Input the Question" name="stmt"  required>
             <br><br>
             <label for="psw"><b><p id="demo">CATEGORY:</p></b></label> <br>
             <label class="subject"><input type="radio" name="category" value="Science" id="sci" onclick="myFunction()" > SCIENCE</label><br>
@@ -219,14 +217,14 @@
               
      
             <label><b>CHOICES: </b></label>
-            <input type="text" placeholder="Input the choice#1 " required>
-            <input type="text" placeholder="Input the choice#2 " required>
-            <input type="text" placeholder="Input the choice#3 " required>
-            <input type="text" placeholder="Input the choice#4 " required>
+            <input name="c1" type="text" placeholder="Input the choice#1 " required>
+            <input name="c2" type="text" placeholder="Input the choice#2 " required>
+            <input name="c3" type="text" placeholder="Input the choice#3 " required>
+            <input name="c4" type="text" placeholder="Input the choice#4 " required>
             
             <br>
             <label><b>CORRECT ANSWER: </b></label>
-            <input type="number" placeholder="Input the number of the correct answer" min="1" max="4" required>  
+            <input name="ans" type="number" placeholder="Input the number of the correct answer" min="1" max="4" required>  
               
             <hr class="border">
 
