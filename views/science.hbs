@@ -300,7 +300,7 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
 
     function createLi(choiceNum,RadioName, choiceText) {
             var e = document.createElement('li');
-            var radioHtml = '<input type="radio" onclick="checkAns()" name="' + RadioName + '"'+ 'id="'+ choiceNum+ '"' +'value="'+ choiceNum+ '"';    
+            var radioHtml = '<input type="radio" onclick="setTimeout(checkAns,1000)" name="' + RadioName + '"'+ 'id="'+ choiceNum+ '"' +'value="'+ choiceNum+ '"';
             radioHtml += '/>';
             radioHtml += '<label ' + 'for="' +choiceNum + '">' +choiceText + '</label>';        
             e.innerHTML = radioHtml;        
