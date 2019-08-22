@@ -109,7 +109,7 @@
                                     </li>   
                                 
                                     <li class="nav-item mx-1" id="login">
-                                    <a class="nav-link" href="math" title="You need to log in."><span class="fas fa-book fa-fw " aria-hidden="true"></span> Math</a>
+                                    <a class="nav-link" href="math" ><span class="fas fa-book fa-fw " aria-hidden="true"></span> Math</a>
                                     </li>
                                 
                                     <li class="nav-item mx-1 dropdown">
@@ -411,7 +411,7 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
 
    function createLi(choiceNum,RadioName, choiceText) {
             var e = document.createElement('li');
-            var radioHtml = '<input type="radio" onclick="checkAns()" name="' + RadioName + '"'+ 'id="'+ choiceNum+ '"' +'value="'+ choiceNum+ '"';    
+            var radioHtml = '<input type="radio" onclick="setTimeout(checkAns,1000)" name="' + RadioName + '"'+ 'id="'+ choiceNum+ '"' +'value="'+ choiceNum+ '"';
             radioHtml += '/>';
             radioHtml += '<label ' + 'for="' +choiceNum + '">' +choiceText + '</label>';        
             e.innerHTML = radioHtml;        
