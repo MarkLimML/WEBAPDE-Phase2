@@ -44,7 +44,6 @@ app.use(session({
 app.use(cookieparser())
 
 app.get(["/","/index.html"], (req,res)=>{
-    
     if(req.session.username){
         console.log(req.session.username)
         Question.find({}, (err, doc)=>{
@@ -54,13 +53,22 @@ app.get(["/","/index.html"], (req,res)=>{
                 res.send("No questions available")
             }else{
                 console.log("English loaded")
-                res.render("index.hbs",{
-                    username: req.session.username,
-                    questions: doc
+                User.find({}, (err, docs)=>{
+                    if(err){
+                        res.send(err)
+                    }else if(!docs){
+                        res.send("No users found")
+                    }else{
+                        console.log("Users Found")
+                        res.render("index.hbs",{
+                            username: req.session.username,
+                            questions: doc,
+                            users: docs
+                        })
+                    }
                 })
             }
         })
-        
     }
     else{
         console.log(User)
@@ -91,9 +99,19 @@ app.get("/math", (req,res)=>{
                 res.send("No questions available")
             }else{
                 console.log("Math loaded")
-                res.render("math.hbs",{
-                    username: req.session.username,
-                    questions: doc
+                User.find({}, (err, docs)=>{
+                    if(err){
+                        res.send(err)
+                    }else if(!docs){
+                        res.send("No users found")
+                    }else{
+                        console.log("Users Found")
+                        res.render("math.hbs",{
+                            username: req.session.username,
+                            questions: doc,
+                            users: docs
+                        })
+                    }
                 })
             }
         })
@@ -116,9 +134,19 @@ app.get("/science", (req,res)=>{
                 res.send("No questions available")
             }else{
                 console.log("Science loaded")
-                res.render("science.hbs",{
-                    username: req.session.username,
-                    questions: doc
+                User.find({}, (err, docs)=>{
+                    if(err){
+                        res.send(err)
+                    }else if(!docs){
+                        res.send("No users found")
+                    }else{
+                        console.log("Users Found")
+                        res.render("science.hbs",{
+                            username: req.session.username,
+                            questions: doc,
+                            users: docs
+                        })
+                    }
                 })
             }
         })
