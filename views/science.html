@@ -85,7 +85,7 @@
           }
         </style>
     
-    <body class="home page-template page-template-homepage page-template-homepage-php page page-id-8 page-homepage">
+    <body class="home page-template page-template-homepage page-template-homepage-php page page-id-8 page-homepage" onload="initQuestion()">
  
         <div class="header">
             <nav class="navbar fixed-top navbar-expand-lg text-nowrap navbar-light" style="background-color: #7fcdff;">
@@ -105,11 +105,11 @@
                                     <div class="dropdown-menu">
                                     </div>
 -->
-                      <a href="english" class="nav-link"><span class="fas fa-book fa-fw " aria-hidden="true"></span> English</a>
+                                    <a href="english" class="nav-link"><span class="fas fa-book fa-fw " aria-hidden="true"></span> English</a>
                                     </li>   
                                 
                                     <li class="nav-item mx-1" id="login">
-                                    <a class="nav-link" href="math" title="You need to log in."><span class="fas fa-book fa-fw " aria-hidden="true"></span> Math</a>
+                                    <a class="nav-link" href="math" ><span class="fas fa-book fa-fw " aria-hidden="true"></span> Math</a>
                                     </li>
                                 
                                     <li class="nav-item mx-1 dropdown">
@@ -121,8 +121,11 @@
                                      <a href="science" class="nav-link"><span class="fas fa-book fa-fw " aria-hidden="true"></span>Science</a>
                                     </li>
                                     <li class="nav-item mx-1 dropdown">
-                                            <a href="about" class="nav-link"><span class="fas fa-info-circle fa-fw " aria-hidden="true"></span> About </a>
-                                            </li>
+<!--                                    <a href="login.html" class="nav-link"><span class="fas fa-info-circle fa-fw " aria-hidden="true"></span> Upload Question </a>-->
+                                    <div class="dropdown-menu">
+                                    
+                                    </div>
+                                    </li>
                                     </ul>
 <!--
                         <form id="quick_search_form" method="get" action="/quick_search" role="search" class="form-inline mx-1 quick-search">
@@ -182,17 +185,17 @@
 <div class="container" role="main" id="content">
     
 <div class="card mb-3">
-<h6 class="card-header text-center">Science </h6>
+<h6 class="card-header text-center">Science</h6>
 <div class="card-body text-center">
  <div id="score_container">
             
         </div>
         
         <div id =“game_container” style="flex-direction: row" >
-		
+		  <h5 id="answerShown"></h5>
             <h2 id='questionTitle'> </h2>
             <ul id ='selectionList'> </ul>
-            
+    
 	    </div>	
         <br><br>
         <div id="image_container" style="flex-direction: row">
@@ -219,8 +222,9 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
     <th>NAME</th> 
     <th>GRAINS</th>
   </tr>
-</table>
 
+    
+</table>
 </div>
 </div>
 </div>
@@ -231,7 +235,9 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
 </html>
 
 <script>
-    var allQuestions = [{
+    
+	    /* 4 */
+     var allQuestions = [{
 	//    "_id" : ObjectId("5d468912a4772c4ce00b4eb1"),
     category : "Science",
     question : "What is H2O?",
@@ -328,6 +334,8 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
         correctans : 2
     }]
 
+
+
     
     //Reference to tags
     var questionTitle = document.getElementById('questionTitle');
@@ -335,6 +343,9 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
     var selectionList = document.getElementById('selectionList');
     var nextButton = document.getElementById('nextButton');
 
+    var answerShown = document.getElementById("answerShown");
+   var h5Elements = document.getElementsByTagName("h5")[0];
+    
     var LeadTable = document.getElementById("leaderboard");
     var userNames = ["AAAA", "BBBB", "CCCCC"];
     var userGrains = [500,20,30000];
@@ -343,7 +354,7 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
     var length1 = allQuestions.length;
     var Totalscore = 0;
 
-    function initQuestion(){
+   function initQuestion(){
         sortTable();
         populateQuestion(0)
         i=1
@@ -391,17 +402,31 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
         var selectedButton = $('input:radio:checked').val();
         
         if(selectedButton == correctChoice){
+            showAnswer(0,questionNum,allQuestions[questionNum].choices[correctChoice])
             Totalscore+=10;
             document.getElementById("scoreTitle").innerHTML = "Your donation total is "+Totalscore+" grains of rice";
             if(Totalscore<100)
             changeRice(Totalscore)
             
         }
-     
+           else{
+          showAnswer(1,questionNum,allQuestions[questionNum].choices[correctChoice])
+       }
         
     }
-
-     function createLi(choiceNum,RadioName, choiceText) {
+    function showAnswer(check,num,answer){
+        if(check==0){
+        h5Elements.style.color= "green";
+        answerShown.innerHTML = "Correct! " + questionTitle.textContent +" " + answer ;
+        }
+        if(check==1){
+           h5Elements.style.color= "red";
+           answerShown.innerHTML = "Incorrect! " + questionTitle.textContent +" " + answer ;
+        }
+            
+    }
+    
+   function createLi(choiceNum,RadioName, choiceText) {
             var e = document.createElement('li');
             var radioHtml = '<input type="radio" onclick="setTimeout(checkAns,1000)" name="' + RadioName + '"'+ 'id="'+ choiceNum+ '"' +'value="'+ choiceNum+ '"';
             radioHtml += '/>';
@@ -414,7 +439,7 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
         document.getElementById("riceImage").src = "images/rice/rice"+score+".gif"
     }
     
-     //leaderboard
+    //leaderboard
     function populateLeaderBoard(){
         
         Count = 0;
@@ -445,6 +470,7 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
         return e;
         
     }
+    
     function sortTable(){
     var len = userGrains.length;
     var swapped;
@@ -465,7 +491,7 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
 
         
     }
-   
+    
     
    
 </script>
