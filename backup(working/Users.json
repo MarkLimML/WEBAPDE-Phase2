@@ -1,0 +1,6 @@
+{"_id":{"$oid":"5d467e9ca4772c4ce00b4e25"},"type":"admin","username":"admin1","password":"12345","totalgrains":{"$numberInt":"5"}}
+{"_id":{"$oid":"5d47b3a42c74c34a48ee6ce3"},"type":"user","username":"test2","password":"1234","totalgrains":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d47b5cc2c74c34a48ee6ce4"},"type":"admin","username":"boss","password":"1234","totalgrains":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d47b5e72c74c34a48ee6ce5"},"type":"user","username":"min","password":"1234","totalgrains":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d47cca94c373d38d836b069"},"type":"admin","username":"aim","password":"1234","totalgrains":{"$numberInt":"0"},"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d47e3cdf7677454b85579a3"},"username":"amir","password":"1234","__v":{"$numberInt":"0"}}

@@ -1,0 +1,21 @@
+{"_id":{"$oid":"5d468912a4772c4ce00b4eb1"},"category":"Science","question":"What is H2O?","choices":["Isopropyl Alcohol","Acid","Water","Hydrogen Peroxide"],"correctans":{"$numberInt":"2"}}
+{"_id":{"$oid":"5d46898ba4772c4ce00b4ec3"},"category":"Science","question":"What is the boiling point of water?","choices":["0 celsius","27 celsius","100 celsius","273 celsius"],"correctans":{"$numberInt":"2"}}
+{"_id":{"$oid":"5d468a21a4772c4ce00b4ed3"},"category":"Science","question":"Who invented the telescope?","choices":["Galileo Galilei","Albert Einstien","Elon Musk","Nikola Tesla"],"correctans":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d468a67a4772c4ce00b4edd"},"category":"Math","question":"9x10/2 = ?","choices":["45","90","40","180"],"correctans":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d468afca4772c4ce00b4eeb"},"category":"Math","question":"50-42/2 = ?","choices":["28","4","29","8"],"correctans":{"$numberInt":"2"}}
+{"_id":{"$oid":"5d468b4da4772c4ce00b4ef8"},"category":"Math","question":"30x0+100/2 = ?","choices":["0","50","100","1500"],"correctans":{"$numberInt":"1"}}
+{"_id":{"$oid":"5d468c43a4772c4ce00b4f0e"},"category":"English","question":"Select means:","choices":["Choose","Compare","Create","Ignore"],"correctans":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d468cb2a4772c4ce00b4f1a"},"category":"English","question":"Atmosphere means:","choices":["Underground","Round globe","Falling","Surrounding Air"],"correctans":{"$numberInt":"3"}}
+{"_id":{"$oid":"5d468d8ea4772c4ce00b4f30"},"category":"English","question":"Assistant means:","choices":["Backtrack","Counter","Scoundrel","Helper"],"correctans":{"$numberInt":"3"}}
+{"_id":{"$oid":"5d47d18d323d3fac39884615"},"category":"Science","question":"What Is Toxicology The Study Of?","choices":["Life","Medicine","Weather","Poisons"],"correctans":{"$numberInt":"3"}}
+{"_id":{"$oid":"5d47d1f52c74c34a48ee6ce6"},"category":"Science","question":"What is the chemical symbol for copper?","choices":["Cu","Ag","Fe","Mg"],"correctans":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d47d2782c74c34a48ee6ce7"},"category":"Science","question":"If you're in the northern hemisphere, Polaris, the North Star, can be found by looking which direction?","choices":["South","North","West","East"],"correctans":{"$numberInt":"1"}}
+{"_id":{"$oid":"5d47d3012c74c34a48ee6ce8"},"category":"Science","question":"This ancient attempt to transmute base metals into gold was called ________.","choices":["Transfusion","Surgery","Alchemy","Cooking"],"correctans":{"$numberInt":"2"}}
+{"_id":{"$oid":"5d47d3572c74c34a48ee6ce9"},"category":"Math","question":"What Is An Angle Of Less Than 90 Degrees Known As?","choices":["Acute Angle","Obtuse Angle","Straight Angle","Right Angle"],"correctans":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d47d42c2c74c34a48ee6cea"},"category":"Math","question":"What geometric shape has 4 equal sides?","choices":["Pentagon","Circle","Triangle","Square"],"correctans":{"$numberInt":"3"}}
+{"_id":{"$oid":"5d47d4aa2c74c34a48ee6ceb"},"category":"Math","question":"What is the only digit that has the same number of letters as its value?","choices":["Hundred","Two","Four","Ten"],"correctans":{"$numberInt":"2"}}
+{"_id":{"$oid":"5d47d52f2c74c34a48ee6cec"},"category":"Math","question":"The square root of 1 is?","choices":["1","0.2","0","0.5"],"correctans":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d47d64b2c74c34a48ee6ced"},"category":"English","question":"What three letter word means the same as 'to ingest'?","choices":["eat","bat","cat","pot"],"correctans":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d47d71c2c74c34a48ee6cee"},"category":"English","question":"What does S.O.S. stand for?","choices":["Spend Our Savings","Skin Our Scalps","Save Our Souls","Spin Our Salads"],"correctans":{"$numberInt":"2"}}
+{"_id":{"$oid":"5d47d8452c74c34a48ee6cef"},"category":"English","question":"What does the abbreviation N/A mean?","choices":["Now Active","Not Accessible","Now Available","Not Applicable"],"correctans":{"$numberInt":"3"}}
+{"_id":{"$oid":"5d495f5cb31dfc55b42edfa9"},"choices":["right","down","up","left"],"category":"English","question":"What is the opposite of left?","correctans":{"$numberInt":"0"},"__v":{"$numberInt":"0"}}

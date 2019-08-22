@@ -15,9 +15,12 @@ var modelsDir = require('path').join(__dirname,'/models')
 app.use(express.static(publicDir))
 app.use(express.static(modelsDir))
 
+var uri = 'mongodb+srv://test:1234@cluster0-u8a7m.mongodb.net/test?retryWrites=true&w=majority';
+
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb://localhost:27017/userss19", {
-    useNewUrlParser : true
+mongoose.connect(uri, {
+    useNewUrlParser : true,
+    dbName: "userss19"
 })
 
 const urlencoder = bodyparser.urlencoded({
@@ -38,22 +41,6 @@ app.use(session({
 app.use(cookieparser())
 
 app.get(["/","/index.html"], (req,res)=>{
-    /*if(req.session.view) {
-        req.session.view++
-    }
-    else {
-        req.session.view = 1
-    }
-    res.send("Views "+req.session.view)
-    
-    if(req.session.username){
-        res.render("home.hbs",{
-            username: req.session.username
-        })
-    }
-    else{
-        res.sendFile(__dirname + "/public/login.html")
-    }*/
     
     if(req.session.username){
         console.log(req.session.username)
@@ -73,6 +60,9 @@ app.get(["/","/index.html"], (req,res)=>{
         
     }
     else{
+        Question.find({}, (err, doc)=>{
+            console.log(doc)
+        })
         console.log(User)
         console.log(Question)
         //res.render("index.hbs",{
@@ -243,43 +233,6 @@ app.post("/changepass", urlencoder, (req,res)=>{
     })
 })
 
-/*
-app.get("/users", (req,res)=>{
-    //load all users
-    //localhost:3000/users
-    console.log("GET /users")
-    User.find({}, (err,docs)=>{
-        if(err){
-            res.send(err)
-        }else{
-            res.render("admin.hbs",{
-                users:docs
-            })
-        }
-    })
-})
-
-app.get("/edit", (req,res)=>{
-    //retrieve user to edit using id
-    console.log("GET /edit")
-    User.findOne({
-        _id: req.query.id
-    }, (err,doc)=>{
-        if(err){
-            res.send(err)
-        }else{
-            res.render("edit.hbs", {
-                user: doc
-            })
-        }
-    })
-})
-
-app.get("/addpage", (req,res)=>{
-    console.log("GET /addpage")
-    res.render("add.hbs")
-})
-*/
 app.post("/add", urlencoder, (req,res)=>{
     console.log("POST /add")
     let username = req.body.un
@@ -351,20 +304,12 @@ app.post("/update", urlencoder, (req,res)=>{
     })
 })
 
-app.post("/preferences", urlencoder,(req,res)=>{
-    let fs = req.body.fontsize
-    res.cookie("font size", fs,{
-        maxAge: 10000*60*60*24*365
-    })
-    res.redirect("/")
-})
-
-app.listen(3000, ()=>{
-    console.log("Live at port 3000")
+app.listen(process.env.PORT || 3000, ()=>{
+    console.log("Live at port "+process.env.PORT)
 })
 
 hbs.registerHelper('whenequal', function(v1, v2, options) {
     if(v1==v2) {
       return options.fn(this);
     }
-  });
+});
