@@ -43,51 +43,21 @@
         
              #bowlImage{
             position: absolute;
-            left:32%
+            left:35%
             }
             #riceImage{
                 position: relative;
                 
             }
-
           #scoreTitle{
               font-family: "Times New Roman", Times, serif;
               font-size: 20px;
               color: white;
               font-weight: bold
           }
-          
-           input[type="radio"] {
-          opacity: 0;
-          position: fixed;
-          width: 0;
-          }
-          
-          label{
-            display: inline-block;
-            background-color:azure;
-            padding: 10px 20px;
-            font-family: sans-serif, Arial;
-            font-size: 16px;
-            border: 2px solid cadetblue;
-            border-radius: 4px;
-          }
-          
-          label:hover{
-          background-color: #dfd;
-          }
-          
-          input[type="radio"]:focus + label {
-            border: 4px solid #444;
-          }
-          
-          input[type="radio"]:checked + label {
-            background-color: #bfb;
-            border-color:cadetblue;
-          }
         </style>
     
-    <body class="home page-template page-template-homepage page-template-homepage-php page page-id-8 page-homepage" onload="initQuestion()">
+    <body class="home page-template page-template-homepage page-template-homepage-php page page-id-8 page-homepage">
  
         <div class="header">
             <nav class="navbar fixed-top navbar-expand-lg text-nowrap navbar-light" style="background-color: #7fcdff;">
@@ -107,8 +77,7 @@
                                     <div class="dropdown-menu">
                                     </div>
 -->
-                                    <a href="english" class="nav-link">
-                                    <span class="fas fa-book fa-fw " aria-hidden="true"></span> English</a>
+                                    <a href="english" class="nav-link"><span class="fas fa-book fa-fw " aria-hidden="true"></span> English</a>
                                     </li>   
                                 
                                     <li class="nav-item mx-1" id="login">
@@ -124,7 +93,7 @@
                                      <a href="science" class="nav-link"><span class="fas fa-book fa-fw " aria-hidden="true"></span>Science</a>
                                     </li>
                                     <li class="nav-item mx-1 dropdown">
-<!--                                    <a href="login.html" class="nav-link"><span class="fas fa-info-circle fa-fw " aria-hidden="true"></span> Upload Question </a>-->
+<!--                                    <a href="login.html" class="nav-link"><span class="fas fa-info-circle fa-fw " aria-hidden="true"></span> Sales </a>-->
                                     <div class="dropdown-menu">
                                     
                                     </div>
@@ -151,11 +120,12 @@
                         <ul class="navbar-nav">
                             <li class="nav-item mx-1 dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <span class="fas fa-user-times fa-fw " aria-hidden="true"></span> <span class="d-lg-none d-xl-inline" style="color: #000">Guest</span>
+                                    <span class="fas fa-user fa-fw " aria-hidden="true"></span> <span class="d-lg-none d-xl-inline" style="color: #000">{{username}}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="login.html"><span class="fas fa-sign-in-alt fa-fw " aria-hidden="true" title="Log in"></span> Log in</a>
-                                    <a class="dropdown-item" href="signup.html"><span class="fas fa-pencil-alt fa-fw " aria-hidden="true" title="Sign up"></span> Sign up</a>
+                                    <a class="dropdown-item" href="editprofile.html"><span class="fas fa-pencil-alt fa-fw " aria-hidden="true" title="Sign up"></span> Edit Profile </a>
+                                    <a class="dropdown-item" href="uploadquestion.html"><span class="fas fa-pencil-alt fa-fw " aria-hidden="true" title="Sign up"></span> Upload questions </a>
+                                    <a class="dropdown-item" href="logout"><span class="fas fa-pencil-alt fa-fw " aria-hidden="true" title="Sign up"></span> Log Out </a>
                                 </div>
                             </li>
                         </ul>
@@ -196,15 +166,24 @@
         
         <div id =“game_container” style="flex-direction: row" >
 		
-            <h2 id='questionTitle'> </h2>
-            <ul id ='selectionList'> </ul>
+            <h2 id='questionTitle'>{{question}} </h2>
+            <ul id ='selectionList'>
+                {{#each question}}
+                <li><input type="radio" name='{{_id}}' value=i/> {{answers}}</li>
+                i++
+                {{/each}}
+            </ul>
+
+            <p> Click the next button to go to the next question! </p>
             
+
+            <button type="button" id = nextButton> Next </button>
 	    </div>	
         <br><br>
         <div id="image_container" style="flex-direction: row">
             <img id="bowlImage" height="250px" src="images/rice/emptybowl.png">
             <img id="riceImage" height="250px" >
-            <div id="scoreTitle"> Your donation total is 0 grains of rice </div>
+            <div id="scoreTitle"> Your donation total is 0 grains of rice</div>
         </div>
 </div>
 </div>   
@@ -219,13 +198,12 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
 <div class="card mb-3">
 <h6 class="card-header text-center">Leader Board</h6>
 <div class="card-body text-center">
-<table id="leaderboard" class="leadtable">
+<table class="leadtable">
   <tr>
     <th>RANK</th>
     <th>NAME</th> 
     <th>GRAINS</th>
   </tr>
-<!--
   <tr>
     <td>1</td>
     <td>Smith</td> 
@@ -241,7 +219,6 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
     <td>John</td> 
     <td>100</td>
   </tr>
--->
     
 </table>
 </div>
@@ -254,91 +231,17 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
 </html>
 
 <script>
-    var allQuestions = [
- /* 7 */
-    {
-//        "_id" : ObjectId("5d468c43a4772c4ce00b4f0e"),
-        category : "English",
-        question : "Select means:",
-        choices : [ 
-            "Choose", 
-            "Compare", 
-            "Create", 
-            "Ignore"
-        ],
-        correctans : 0
+   var allQuestions = [{{#each questions}}
+   {{#whenequal this.category "English"}}
+   {
+       category : "{{category}}", question : "{{{question}}}", 
+       choices : [
+       {{#each choices}}
+       "{{this}}",
+       {{/each}}], correctans : {{correctans}}
     },
-
-    /* 8 */
-    {
-//        "_id" : ObjectId("5d468cb2a4772c4ce00b4f1a"),
-        category : "English",
-        question : "Atmosphere means:",
-        choices : [ 
-            "Underground", 
-            "Round globe", 
-            "Falling", 
-            "Surrounding Air"
-        ],
-        correctans : 3
-    },
-
-    /* 9 */
-    {
-//        "_id" : ObjectId("5d468d8ea4772c4ce00b4f30"),
-        category : "English",
-        question : "Assistant means:",
-        choices : [ 
-            "Backtrack", 
-            "Counter", 
-            "Scoundrel", 
-            "Helper"
-        ],
-        correctans : 3
-    },
-
-    
-    /* 18 */
-    {
-//        "_id" : ObjectId("5d47d64b2c74c34a48ee6ced"),
-        category : "English",
-        question : "What three letter word means the same as \"to ingest\"?",
-        choices : [ 
-            "eat", 
-            "bat", 
-            "cat", 
-            "pot"
-        ],
-        correctans : 0
-    },
-
-    /* 19 */
-    {
-//        "_id" : ObjectId("5d47d71c2c74c34a48ee6cee"),
-        category : "English",
-        question : "What does S.O.S. stand for?",
-        choices : [ 
-            "Spend Our Savings", 
-            "Skin Our Scalps", 
-            "Save Our Souls", 
-            "Spin Our Salads"
-        ],
-        correctans : 2
-    },
-
-    /* 20 */
-    {
-//        "_id" : ObjectId("5d47d8452c74c34a48ee6cef"),
-        category : "English",
-        question : "What does the abbreviation N/A mean?",
-        choices : [ 
-            "Now Active", 
-            "Not Accessible", 
-            "Now Available", 
-            "Not Applicable"
-        ],
-        correctans : 3
-    }];
+    {{/whenequal}}
+    {{/each}}];
     
     
     //Reference to tags
@@ -346,25 +249,13 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
     var scpreTitle = document.getElementById('scoreTitle');
     var selectionList = document.getElementById('selectionList');
     var nextButton = document.getElementById('nextButton');
-    var LeadTable = document.getElementById("leaderboard");
-    
-    var userNames = ["AAAA", "BBBB", "CCCCC"];
-    var userGrains = [500,20,30000];
-   
+
     
     var i = 0;
     var length1 = allQuestions.length;
     var Totalscore = 0;
 
-     function initQuestion(){
-        sortTable();
-        populateQuestion(0)
-        i=1
-        
-        populateLeaderBoard()
-    }
-    
-    function checkAns(){
+    nextButton.onclick = function() {
         
         if(i>=1)
         checkCorrect(i-1)
@@ -375,11 +266,14 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
         }    
         populateQuestion(i);
         
-        i++; 
-    }
+    
+        
+        i++;
+    };
 
     function populateQuestion(qNum) {
         var individualQuestion = allQuestions[i];
+        console.log(allQuestions);
         questionTitle.innerText = individualQuestion.question;
 
         selectionList.innerHTML = ""; //reset choices list
@@ -408,91 +302,23 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
             changeRice(Totalscore)
             
         }
-   
+ 
         
     }
 
     function createLi(choiceNum,RadioName, choiceText) {
             var e = document.createElement('li');
-            var radioHtml = '<input type="radio" onclick="checkAns()" name="' + RadioName + '"'+ 'id="'+ choiceNum+ '"' +'value="'+ choiceNum+ '"';    
+            var radioHtml = '<input type="radio" name="' + RadioName + '"'+'value="'+ choiceNum+ '"';    
             radioHtml += '/>';
-            radioHtml += '<label ' + 'for="' +choiceNum + '">' +choiceText + '</label>';        
+            radioHtml += choiceText;        
             e.innerHTML = radioHtml;        
             return e;
     }
-    
     
     function changeRice(score){
         document.getElementById("riceImage").src = "images/rice/rice"+score+".gif"
     }
     
-    //leaderboard
-    function populateLeaderBoard(){
-        
-        Count = 0;
-        
-        for(key in userNames){
-            LeadTable.appendChild(createTable(Count,userNames[Count],userGrains[Count]));
-            
-            Count++
-        }
-
-    }
-    
-    
-    
-    function createTable(Count, userName, userGrains){
-       
-        var e = document.createElement("tr")
-        
-        Count++
-   
-        
-        var contentHtml = '<th>' +Count + '</th>';
-        contentHtml+= '<th>' + userName + '</th>';
-        contentHtml+= '<th>' + userGrains + '</th>';
-        
-        e.innerHTML = contentHtml;
-        
-        return e;
-        
-    }
-    //
-    function sortTable(){
-//        var temp;
-//        var tempname, tempgrain;
-//        for(var i=0; i<userGrains.length;i++){
-//            temp = userGrains[i];
-//            if(temp<=userGrains[i+1]){
-//                tempname=userNames[i];
-//                tempgrain=userGrains[i];
-//                userNames[i]=userNames[i+1];
-//                userGrains[i]=userGrains[i+1];
-//                userNames[i+1]=tempname;
-//                userGrains[i+1]=tempgrain;
-//            }
-//
-//            
-//        }
-    var len = userGrains.length;
-    var swapped;
-    do {
-        swapped = false;
-        for (var i = 0; i < len; i++) {
-            if (userGrains[i] < userGrains[i + 1]) {
-                var tmpgrain = userGrains[i];
-                var tmpname = userNames[i]
-                userGrains[i] = userGrains[i + 1];
-                userGrains[i + 1] = tmpgrain;
-                userNames[i] = userNames[i + 1];
-                userNames[i + 1] = tmpname;
-                swapped = true;
-            }
-        }
-    } while (swapped);
-
-        
-    }
     
    
 </script>

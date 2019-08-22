@@ -20,9 +20,9 @@
                 background-color:#76b6c4;
                 border-color: #7fcdff;
             }
-            .card .card-header{
+            .card-header{
                 background-color: #1da2d8;
-                font-size: 30px
+                
             }
             .card .card-body{
                 background-color: #7fcdff;
@@ -50,44 +50,9 @@
                 
             }
 
-          #scoreTitle{
-              font-family: "Times New Roman", Times, serif;
-              font-size: 20px;
-              color: white;
-              font-weight: bold
-          }
-          
-           input[type="radio"] {
-          opacity: 0;
-          position: fixed;
-          width: 0;
-          }
-          
-          label{
-            display: inline-block;
-            background-color:azure;
-            padding: 10px 20px;
-            font-family: sans-serif, Arial;
-            font-size: 16px;
-            border: 2px solid cadetblue;
-            border-radius: 4px;
-          }
-          
-          label:hover{
-          background-color: #dfd;
-          }
-          
-          input[type="radio"]:focus + label {
-            border: 4px solid #444;
-          }
-          
-          input[type="radio"]:checked + label {
-            background-color: #bfb;
-            border-color:cadetblue;
-          }
         </style>
     
-    <body class="home page-template page-template-homepage page-template-homepage-php page page-id-8 page-homepage" onload="initQuestion()">
+    <body class="home page-template page-template-homepage page-template-homepage-php page page-id-8 page-homepage">
  
         <div class="header">
             <nav class="navbar fixed-top navbar-expand-lg text-nowrap navbar-light" style="background-color: #7fcdff;">
@@ -198,13 +163,16 @@
 		
             <h2 id='questionTitle'> </h2>
             <ul id ='selectionList'> </ul>
+            <p> Click the next button to go to the next question! </p>
             
+
+            <button type="button" id = nextButton> Next </button>
 	    </div>	
         <br><br>
         <div id="image_container" style="flex-direction: row">
             <img id="bowlImage" height="250px" src="images/rice/emptybowl.png">
             <img id="riceImage" height="250px" >
-            <div id="scoreTitle"> Your donation total is 0 grains of rice </div>
+            <div id="scoreTitle"> SCORE: </div>
         </div>
 </div>
 </div>   
@@ -219,13 +187,12 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
 <div class="card mb-3">
 <h6 class="card-header text-center">Leader Board</h6>
 <div class="card-body text-center">
-<table id="leaderboard" class="leadtable">
+<table class="leadtable">
   <tr>
     <th>RANK</th>
     <th>NAME</th> 
     <th>GRAINS</th>
   </tr>
-<!--
   <tr>
     <td>1</td>
     <td>Smith</td> 
@@ -241,7 +208,6 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
     <td>John</td> 
     <td>100</td>
   </tr>
--->
     
 </table>
 </div>
@@ -346,25 +312,13 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
     var scpreTitle = document.getElementById('scoreTitle');
     var selectionList = document.getElementById('selectionList');
     var nextButton = document.getElementById('nextButton');
-    var LeadTable = document.getElementById("leaderboard");
-    
-    var userNames = ["AAAA", "BBBB", "CCCCC"];
-    var userGrains = [500,20,30000];
-   
+
     
     var i = 0;
     var length1 = allQuestions.length;
     var Totalscore = 0;
 
-     function initQuestion(){
-        sortTable();
-        populateQuestion(0)
-        i=1
-        
-        populateLeaderBoard()
-    }
-    
-    function checkAns(){
+    nextButton.onclick = function() {
         
         if(i>=1)
         checkCorrect(i-1)
@@ -375,8 +329,10 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
         }    
         populateQuestion(i);
         
-        i++; 
-    }
+    
+        
+        i++;
+    };
 
     function populateQuestion(qNum) {
         var individualQuestion = allQuestions[i];
@@ -403,7 +359,7 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
         
         if(selectedButton == correctChoice){
             Totalscore+=10;
-            document.getElementById("scoreTitle").innerHTML = "Your donation total is "+Totalscore+" grains of rice";
+            document.getElementById("scoreTitle").innerHTML = "Score:"+Totalscore;
             if(Totalscore<100)
             changeRice(Totalscore)
             
@@ -414,85 +370,17 @@ If you get it right, you get 10 grains to donate.<br> If you get it wrong, don't
 
     function createLi(choiceNum,RadioName, choiceText) {
             var e = document.createElement('li');
-            var radioHtml = '<input type="radio" onclick="checkAns()" name="' + RadioName + '"'+ 'id="'+ choiceNum+ '"' +'value="'+ choiceNum+ '"';    
+            var radioHtml = '<input type="radio" name="' + RadioName + '"'+'value="'+ choiceNum+ '"';    
             radioHtml += '/>';
-            radioHtml += '<label ' + 'for="' +choiceNum + '">' +choiceText + '</label>';        
+            radioHtml += choiceText;        
             e.innerHTML = radioHtml;        
             return e;
     }
-    
     
     function changeRice(score){
         document.getElementById("riceImage").src = "images/rice/rice"+score+".gif"
     }
     
-    //leaderboard
-    function populateLeaderBoard(){
-        
-        Count = 0;
-        
-        for(key in userNames){
-            LeadTable.appendChild(createTable(Count,userNames[Count],userGrains[Count]));
-            
-            Count++
-        }
-
-    }
-    
-    
-    
-    function createTable(Count, userName, userGrains){
-       
-        var e = document.createElement("tr")
-        
-        Count++
-   
-        
-        var contentHtml = '<th>' +Count + '</th>';
-        contentHtml+= '<th>' + userName + '</th>';
-        contentHtml+= '<th>' + userGrains + '</th>';
-        
-        e.innerHTML = contentHtml;
-        
-        return e;
-        
-    }
-    //
-    function sortTable(){
-//        var temp;
-//        var tempname, tempgrain;
-//        for(var i=0; i<userGrains.length;i++){
-//            temp = userGrains[i];
-//            if(temp<=userGrains[i+1]){
-//                tempname=userNames[i];
-//                tempgrain=userGrains[i];
-//                userNames[i]=userNames[i+1];
-//                userGrains[i]=userGrains[i+1];
-//                userNames[i+1]=tempname;
-//                userGrains[i+1]=tempgrain;
-//            }
-//
-//            
-//        }
-    var len = userGrains.length;
-    var swapped;
-    do {
-        swapped = false;
-        for (var i = 0; i < len; i++) {
-            if (userGrains[i] < userGrains[i + 1]) {
-                var tmpgrain = userGrains[i];
-                var tmpname = userNames[i]
-                userGrains[i] = userGrains[i + 1];
-                userGrains[i + 1] = tmpgrain;
-                userNames[i] = userNames[i + 1];
-                userNames[i + 1] = tmpname;
-                swapped = true;
-            }
-        }
-    } while (swapped);
-
-        
-    }
     
    
 </script>
