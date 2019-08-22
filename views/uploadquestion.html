@@ -10,6 +10,7 @@
     </head>
     
       <style>
+    
             .home{
                 height: 50;
                 width: 100%;
@@ -49,21 +50,65 @@
                 position: relative;
                 
             }
-            .uploadbtn{
-              background-color: #4CAF50;
-              color: white;
-              padding: 16px 20px;
-              margin: 8px 0;
-              border: none;
-              cursor: pointer;
-              opacity: 0.9;
-            }
           
           .container{
               color: white
           }
           hr.border{
               color: white
+          }
+          
+           .uploadbtn{
+              width: 100%;
+              background-color: #4CAF50;
+              color: white;
+              padding: 14px 20px;
+              margin: 8px 0;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            }
+          
+         .uploadbtn:hover {
+                background-color: #45a049;
+        }
+          
+          #textboxid{
+            width: 100%;
+            font-size:14pt;
+        }
+          
+                    input[type="radio"] {
+          opacity: 0;
+          position: fixed;
+          width: 0;
+          }
+          
+          .subject{
+            display: inline-block;
+            background-color:azure;
+            padding: 10px 20px;
+            font-family: sans-serif, Arial;
+            font-size: 16px;
+            border: 2px solid cadetblue;
+            border-radius: 4px;
+          }
+          
+          .subject:hover{
+          background-color: #dfd;
+          }
+          
+          .subject:onClick{
+              background-color:black;
+          }
+          
+          input[type="radio"]:focus + label {
+            border: 4px solid #444;
+          }
+          
+          input[type="radio"]:checked + label {
+            background-color: #bfb;
+            border-color:cadetblue;
           }
         </style>
     
@@ -82,11 +127,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
                                     <li class="nav-item dropdown mx-1">
-<!--
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fas fa-book fa-fw " aria-hidden="true"></span> Manga</a>
-                                    <div class="dropdown-menu">
-                                    </div>
--->
+
                                     <a href="login.html" class="nav-link"><span class="fas fa-book fa-fw " aria-hidden="true"></span> English</a>
                                     </li>   
                                 
@@ -95,11 +136,7 @@
                                     </li>
                                 
                                     <li class="nav-item mx-1 dropdown">
-<!--
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fas fa-users fa-fw " aria-hidden="true"></span> Community</a>
-                                    <div class="dropdown-menu">
-                                    </div>
--->
+
                                      <a href="login.html" class="nav-link"><span class="fas fa-book fa-fw " aria-hidden="true"></span>Science</a>
                                     </li>
                                     <li class="nav-item mx-1 dropdown">
@@ -109,24 +146,7 @@
                                     </div>
                                     </li>
                                     </ul>
-<!--
-                        <form id="quick_search_form" method="get" action="/quick_search" role="search" class="form-inline mx-1 quick-search">
-                            <div class="input-group">
-                            <div class="input-group-prepend">
-                            <select class="form-control" id="quick_search_type" name="type">
-                            <option value="all">All</option>
-                            <option selected="" value="titles">Manga</option>
-                            <option value="groups">Groups</option>
-                            <option value="users">Users</option>
-                            </select>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Quick search" name="term" id="quick_search_input" required="">
-                            <span class="input-group-append">
-                            <button class="btn btn-secondary" type="submit" id="quick_search_button" name="submit"><span class="fas fa-search fa-fw " aria-hidden="true"></span></button>
-                            </span>
-                            </div>
-                        </form>
--->
+
                         <ul class="navbar-nav">
                             <li class="nav-item mx-1 dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -160,16 +180,19 @@
             <hr class="border">
 
             <label><b>Question: </b></label>
-            <input type="text" placeholder="Input the Question" name="question" required>
+            <input id="textboxid" type="text" placeholder="Input the Question" name="question"  required>
             <br><br>
-            <label for="psw"><b>CATEGORY</b></label> <br>
-            <input type="radio" name="category" value="Science"> SCIENCE<br>
-            <input type="radio" name="category" value="English"> ENGLISH<br>
-            <input type="radio" name="category" value="Math"> MATH
+            <label for="psw"><b><p id="demo">CATEGORY:</p></b></label> <br>
+            <label class="subject"><input type="radio" name="category" value="Science" id="sci" onclick="myFunction()" > SCIENCE</label><br>
+            <label class="subject"><input type="radio" name="category" value="English" id="eng" onclick="myFunction1()"> ENGLISH</label><br>
+            <label class="subject"><input type="radio" name="category" value="Math" id="mat" onclick="myFunction2()"> MATH </label>
             
-            <br><br>
+           
+            <br>
+             
+            <br>
 
-            
+           
               
      
             <label><b>CHOICES: </b></label>
@@ -184,7 +207,7 @@
               
             <hr class="border">
 
-            <p> By clicing the upload button, the question will be uploaded to database</p>
+            <p> By clicking the upload button, the question will be uploaded to database</p>
             <button type="submit" class="uploadbtn">Upload</button>
           </div>
 
@@ -193,3 +216,13 @@
 
 
 </html>
+
+<script>
+function myFunction() {
+    document.getElementById("demo").innerHTML = "CATEGORY: Science";
+}function myFunction1() {
+    document.getElementById("demo").innerHTML = "CATEGORY: English";
+}function myFunction2() {
+    document.getElementById("demo").innerHTML = "CATEGORY: Math";
+}
+</script>
