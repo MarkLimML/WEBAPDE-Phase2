@@ -60,9 +60,6 @@ app.get(["/","/index.html"], (req,res)=>{
         
     }
     else{
-        Question.find({}, (err, doc)=>{
-            console.log(doc)
-        })
         console.log(User)
         console.log(Question)
         //res.render("index.hbs",{
@@ -128,6 +125,19 @@ app.get("/science", (req,res)=>{
     }
 })
 
+app.post("/scoreup", (req,res)=>{
+    User.update({
+        _id: req.session._id
+    }, {
+        totalgrains: req.session.totalgrains + 10,
+    }, (err,doc)=>{
+        if(err){
+            res.send(err)
+        }else{
+            req.session.totalgrains = doc.totalgrains
+        }
+    })
+})
 
 app.get("/editprofile.html", (req,res)=>{
     if(req.session.username){
