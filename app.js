@@ -32,9 +32,11 @@ app.use(express.static(__dirname + "/public"))
 app.use(session({
     secret : "secret name",
     name : "session",
-    resave : true,
+    resave : false,
+    rolling: true,
     saveUninitialized : true,
     cookie : {
+        secure: false,
         maxAge : 1000*60*60*24*365
     }
 }))
@@ -50,7 +52,7 @@ app.get(["/","/index.html"], (req,res)=>{
             }else if(!doc){
                 res.send("No questions available")
             }else{
-                console.log(doc)
+                console.log("English loaded")
                 res.render("index.hbs",{
                     username: req.session.username,
                     questions: doc
@@ -87,7 +89,7 @@ app.get("/math", (req,res)=>{
             }else if(!doc){
                 res.send("No questions available")
             }else{
-                console.log(doc)
+                console.log("Math loaded")
                 res.render("math.hbs",{
                     username: req.session.username,
                     questions: doc
@@ -112,7 +114,7 @@ app.get("/science", (req,res)=>{
             }else if(!doc){
                 res.send("No questions available")
             }else{
-                console.log(doc)
+                console.log("Science loaded")
                 res.render("science.hbs",{
                     username: req.session.username,
                     questions: doc
@@ -126,21 +128,35 @@ app.get("/science", (req,res)=>{
 })
 
 app.post("/scoreup", (req,res)=>{
-    User.update({
+    User.updateOne({
         _id: req.session._id
     }, {
-        totalgrains: req.session.totalgrains + 10,
+        totalgrains: req.session.totalgrains + 10
     }, (err,doc)=>{
         if(err){
             res.send(err)
         }else{
+            console.log(req.session.totalgrains)
             console.log("Updated")
-            console.log(doc)
+            var newgrains = req.session.totalgrains + 10
+            req.session.totalgrains = newgrains
         }
     })
-    var newgrains = req.session.totalgrains + 10
-    req.session.totalgrains = newgrains
-    console.log(req.session)
+    User.findOne({
+        username: req.session.username
+    }, (err,doc)=>{
+        if(err){
+            res.send(err)
+        }else{
+            console.log("Found One")
+            console.log(doc)
+            req.session.username = doc.username
+            req.session.password = doc.password
+            req.session.totalgrains = doc.totalgrains
+            console.log(req.session.totalgrains)
+            req.session.save()
+        }
+    })
 })
 
 app.get("/editprofile.html", (req,res)=>{
@@ -151,7 +167,9 @@ app.get("/editprofile.html", (req,res)=>{
             if(err){
                 res.send(err)
             }else{
+                console.log("Found One")
                 console.log(req.session)
+                console.log(doc)
                 res.render("editprofile.hbs",{
                     username: doc.username,
                     password: doc.password,
