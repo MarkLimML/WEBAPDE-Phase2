@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/MarkLimML/WEBAPDE-Phase2#readme",
   "dependencies": {
-    "body-parser": "^1.20.1",
+    "body-parser": "^1.20.3",
     "cookie-parser": "^1.4.5",
     "crypto": "^1.0.1",
     "express": "^4.20.0",
