@@ -28,7 +28,7 @@
     "crypto": "^1.0.1",
     "express": "^4.22.1",
     "express-session": "^1.19.0",
-    "handlebars": "^4.7.7",
+    "handlebars": "^4.7.9",
     "hbs": "^4.1.2",
     "mongodb": "^3.6.10",
     "mongoose": "^8.9.5"
